@@ -1,4 +1,4 @@
-﻿using Application.Persistence;
+﻿using Application.Common.Persistence;
 using Domain.Entities;
 
 namespace Infrastructure.Persistance

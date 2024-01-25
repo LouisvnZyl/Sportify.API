@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces.Authentication;
 using Application.Common.Interfaces.Services;
-using Application.Persistence;
+using Application.Common.Persistence;
 using Infrastructure.Authentication;
 using Infrastructure.Persistance;
 using Infrastructure.Services;

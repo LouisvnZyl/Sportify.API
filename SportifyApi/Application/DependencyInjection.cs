@@ -1,4 +1,5 @@
-﻿using Application.Services.Authentication;
+﻿using Application.Services.Authentication.Commands;
+using Application.Services.Authentication.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -7,7 +8,8 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAuthenticationCommandService, AuthenticationCommandService>();
+            services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
 
             return services;
         }
