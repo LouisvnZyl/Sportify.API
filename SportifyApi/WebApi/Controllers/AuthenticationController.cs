@@ -10,9 +10,9 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IMediator _mediator;
+        private readonly ISender _mediator;
 
-        public AuthenticationController(IMediator mediator)
+        public AuthenticationController(ISender mediator)
         {
             _mediator = mediator;
         }

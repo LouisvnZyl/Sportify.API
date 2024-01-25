@@ -8,14 +8,14 @@ namespace Application.Authentication.Queries.Login
 {
     public class LoginQueryHandler : IRequestHandler<LoginQuery, AuthenticationResult>
     {
+        private readonly IUserRepository _userRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public LoginQueryHandler(IJwtTokenGenerator jwtTokenGenerator)
-        { 
+        public LoginQueryHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
+        {
+            _userRepository = userRepository;
             _jwtTokenGenerator = jwtTokenGenerator;
         }
-
-        private readonly IUserRepository _userRepository;
 
         public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
