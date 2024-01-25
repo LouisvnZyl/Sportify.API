@@ -1,9 +1,9 @@
-﻿using Application.Common.Interfaces.Authentication;
+﻿using Application.Authentication.Common;
+using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
-using Application.Services.Authentication.Common;
 using Domain.Entities;
 
-namespace Application.Services.Authentication.Queries
+namespace Application.Authentication.Queries.Login
 {
     public class AuthenticationQueryService : IAuthenticationQueryService
     {

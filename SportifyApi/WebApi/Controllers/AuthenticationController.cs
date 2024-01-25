@@ -1,5 +1,5 @@
-﻿using Application.Services.Authentication.Commands;
-using Application.Services.Authentication.Queries;
+﻿using Application.Authentication.Commands.Register;
+using Application.Authentication.Queries.Login;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Contracts.Authentication;
 

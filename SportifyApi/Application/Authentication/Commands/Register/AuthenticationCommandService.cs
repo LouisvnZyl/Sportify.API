@@ -1,10 +1,10 @@
-﻿using Application.Common.Errors;
+﻿using Application.Authentication.Common;
+using Application.Common.Errors;
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
-using Application.Services.Authentication.Common;
 using Domain.Entities;
 
-namespace Application.Services.Authentication.Commands
+namespace Application.Authentication.Commands.Register
 {
     public class AuthenticationCommandService : IAuthenticationCommandService
     {

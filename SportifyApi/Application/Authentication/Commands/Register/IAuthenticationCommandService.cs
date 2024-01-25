@@ -1,6 +1,6 @@
-﻿using Application.Services.Authentication.Common;
+﻿using Application.Authentication.Common;
 
-namespace Application.Services.Authentication.Commands
+namespace Application.Authentication.Commands.Register
 {
     public interface IAuthenticationCommandService
     {

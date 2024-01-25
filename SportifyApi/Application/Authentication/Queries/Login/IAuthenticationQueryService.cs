@@ -1,6 +1,6 @@
-﻿using Application.Services.Authentication.Common;
+﻿using Application.Authentication.Common;
 
-namespace Application.Services.Authentication.Queries
+namespace Application.Authentication.Queries.Login
 {
     public interface IAuthenticationQueryService
     {
