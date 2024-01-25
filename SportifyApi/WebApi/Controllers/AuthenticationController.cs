@@ -1,7 +1,8 @@
-﻿using Application.Authentication.Commands.Register;
-using Application.Authentication.Queries.Login;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebApi.Contracts.Authentication;
+using MediatR;
+using Application.Authentication.Commands.Register;
+using Application.Authentication.Queries.Login;
 
 namespace WebApi.Controllers
 {
@@ -9,45 +10,39 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class AuthenticationController : ControllerBase
     {
-        private readonly IAuthenticationCommandService _authenticationCommandService;
-        private readonly IAuthenticationQueryService _authenticationQueryService;
+        private readonly IMediator _mediator;
 
-        public AuthenticationController(IAuthenticationCommandService authenticationCommandService, IAuthenticationQueryService authenticationQueryService)
+        public AuthenticationController(IMediator mediator)
         {
-            _authenticationCommandService = authenticationCommandService;
-            _authenticationQueryService = authenticationQueryService;
+            _mediator = mediator;
         }
 
-        [HttpPost("login")]
-        public IActionResult Login(LoginRequest request)
+        [HttpPost("register")]
+        public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var authResult = _authenticationQueryService.Login(request.Email, request.Password);
-
-            var response = new AuthenticationResponse
+            var command = new RegisterCommand
             {
-                Id = authResult.User.Id,
-                FirstName = authResult.User.FirstName,
-                LastName = authResult.User.LastName,
-                Email = authResult.User.Email,
-                Token = authResult.Token
+                FirstName = request.FirstName, 
+                LastName = request.LastName, 
+                Email = request.Email, 
+                Password = request.Password 
             };
+
+            var response = await _mediator.Send(command);
 
             return Ok(response);
         }
 
-        [HttpPost("register")]
-        public IActionResult Register(RegisterRequest request)
+        [HttpPost("login")]
+        public async Task<IActionResult> Login(LoginRequest request)
         {
-            var authResult = _authenticationCommandService.Register(request.FirstName, request.LastName, request.Email, request.Password);
-
-            var response = new AuthenticationResponse
+            var query = new LoginQuery
             {
-                Id = authResult.User.Id,
-                FirstName = authResult.User.FirstName,
-                LastName = authResult.User.LastName,
-                Email = authResult.User.Email,
-                Token = authResult.Token
+                Email = request.Email,
+                Password = request.Password
             };
+
+            var response = await _mediator.Send(query);
 
             return Ok(response);
         }

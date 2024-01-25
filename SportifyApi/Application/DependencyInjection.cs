@@ -1,5 +1,4 @@
-﻿using Application.Authentication.Commands.Register;
-using Application.Authentication.Queries.Login;
+﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application
@@ -8,9 +7,7 @@ namespace Application
     {
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
-            services.AddScoped<IAuthenticationCommandService, AuthenticationCommandService>();
-            services.AddScoped<IAuthenticationQueryService, AuthenticationQueryService>();
-
+            services.AddMediatR(typeof(DependencyInjection).Assembly);
             return services;
         }
     }
