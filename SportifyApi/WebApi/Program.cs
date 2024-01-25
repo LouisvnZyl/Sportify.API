@@ -2,17 +2,14 @@ using Application;
 using Infrastructure;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Presentation;
-using WebApi.Errors;
-using WebApi.Filters;
+using WebApi.Common.Errors;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration)
     .AddPresentation();
 
-// builder.Services.AddControllers(options => options.Filters.Add<ErrorHandlingFilterAttribute>());
 builder.Services.AddControllers();
 
 builder.Services.AddSingleton<ProblemDetailsFactory, SportifyProblemDetailsFactory>();
@@ -20,10 +17,8 @@ builder.Services.AddSingleton<ProblemDetailsFactory, SportifyProblemDetailsFacto
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+
 var app = builder.Build();
-
-// app.UseMiddleware<ErrorHandlingMiddleware>();
-
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -31,6 +26,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseExceptionHandler("/error");
+
 app.UseHttpsRedirection();
 app.MapControllers();
 

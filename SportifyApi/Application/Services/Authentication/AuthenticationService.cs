@@ -1,4 +1,5 @@
-﻿using Application.Common.Interfaces.Authentication;
+﻿using Application.Common.Errors;
+using Application.Common.Interfaces.Authentication;
 using Application.Persistence;
 using Domain.Entities;
 
@@ -41,7 +42,7 @@ namespace Application.Services.Authentication
         {
             if (_userRepository.GetUserByEmail(email) is not null) 
             {
-                throw new Exception("User already exists");
+                throw new DuplicateEmailException();
             }
 
             var user = new User 

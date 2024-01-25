@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
 using System.Diagnostics;
 
-namespace WebApi.Errors
+namespace WebApi.Common.Errors
 {
     public class SportifyProblemDetailsFactory : ProblemDetailsFactory
     {
