@@ -23,24 +23,24 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var command = new RegisterCommand
+            try
             {
-                FirstName = request.FirstName, 
-                LastName = request.LastName, 
-                Email = request.Email, 
-                Password = request.Password 
-            };
+                var command = new RegisterCommand
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Email = request.Email,
+                    Password = request.Password
+                };
 
-            var validationResult = await _registorCommandValidator.ValidateAsync(command);
-
-            if (validationResult.IsValid)
-            {
                 var response = await _mediator.Send(command);
                 return Ok(response);
-            } else
+            } catch (ValidationException ex) 
+            { 
+                return BadRequest(ex.Message);
+            } catch (Exception ex)
             {
-                var errors = validationResult.Errors.Select(e => e.ErrorMessage);
-                return BadRequest(new { Errors = errors });
+                return StatusCode(500, ex);
             }
         }
 
@@ -54,7 +54,6 @@ namespace WebApi.Controllers
             };
 
             var response = await _mediator.Send(query);
-
             return Ok(response);
         }
     }
