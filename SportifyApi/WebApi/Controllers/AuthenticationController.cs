@@ -3,6 +3,7 @@ using WebApi.Contracts.Authentication;
 using MediatR;
 using Application.Authentication.Commands.Register;
 using Application.Authentication.Queries.Login;
+using FluentValidation;
 
 namespace WebApi.Controllers
 {
@@ -11,10 +12,12 @@ namespace WebApi.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly ISender _mediator;
+        private readonly IValidator<RegisterCommand> _registorCommandValidator;
 
-        public AuthenticationController(ISender mediator)
+        public AuthenticationController(ISender mediator, IValidator<RegisterCommand> registorCommandValidator)
         {
             _mediator = mediator;
+            _registorCommandValidator = registorCommandValidator;
         }
 
         [HttpPost("register")]
@@ -28,9 +31,17 @@ namespace WebApi.Controllers
                 Password = request.Password 
             };
 
-            var response = await _mediator.Send(command);
+            var validationResult = await _registorCommandValidator.ValidateAsync(command);
 
-            return Ok(response);
+            if (validationResult.IsValid)
+            {
+                var response = await _mediator.Send(command);
+                return Ok(response);
+            } else
+            {
+                var errors = validationResult.Errors.Select(e => e.ErrorMessage);
+                return BadRequest(new { Errors = errors });
+            }
         }
 
         [HttpPost("login")]
