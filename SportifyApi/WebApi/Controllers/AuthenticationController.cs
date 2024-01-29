@@ -47,14 +47,25 @@ namespace WebApi.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            var query = new LoginQuery
+            try
             {
-                Email = request.Email,
-                Password = request.Password
-            };
+                var query = new LoginQuery
+                {
+                    Email = request.Email,
+                    Password = request.Password
+                };
 
-            var response = await _mediator.Send(query);
-            return Ok(response);
+                var response = await _mediator.Send(query);
+                return Ok(response);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
     }
 }
