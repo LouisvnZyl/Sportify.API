@@ -6,9 +6,9 @@ namespace Infrastructure.Persistance.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        private readonly SportifyApiDbContext _dbContext;
+        private readonly SportifyDbContext _dbContext;
 
-        public UserRepository(SportifyApiDbContext dbContext)
+        public UserRepository(SportifyDbContext dbContext)
         {
             _dbContext = dbContext;
         }
