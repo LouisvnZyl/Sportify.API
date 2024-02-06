@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebApi.Contracts.Authentication;
-using MediatR;
-using Application.Authentication.Commands.Register;
+﻿using Application.Authentication.Commands.Register;
 using Application.Authentication.Queries.Login;
 using FluentValidation;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using WebApi.Contracts.Authentication;
 
 namespace WebApi.Controllers
 {
@@ -33,10 +33,12 @@ namespace WebApi.Controllers
 
                 var response = await _mediator.Send(command);
                 return Ok(response);
-            } catch (ValidationException ex) 
-            { 
+            }
+            catch (ValidationException ex)
+            {
                 return BadRequest(ex.Message);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(500, ex);
             }

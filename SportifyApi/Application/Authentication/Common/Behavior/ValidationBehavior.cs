@@ -16,14 +16,14 @@ namespace Application.Authentication.Common.Behavior
 
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
-            if (_validator == null) 
+            if (_validator == null)
             {
                 return await next().ConfigureAwait(false);
             }
 
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);
 
-            if (validationResult.IsValid) 
+            if (validationResult.IsValid)
             {
                 return await next().ConfigureAwait(false);
             }
