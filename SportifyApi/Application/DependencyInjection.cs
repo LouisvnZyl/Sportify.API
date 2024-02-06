@@ -14,7 +14,7 @@ namespace Application
 
             services.AddScoped(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
-            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());    
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
 
             return services;
         }
