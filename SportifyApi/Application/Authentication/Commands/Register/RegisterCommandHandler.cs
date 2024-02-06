@@ -20,7 +20,7 @@ namespace Application.Authentication.Commands.Register
 
         public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
-            if (_userRepository.GetUserByEmail(command.Email) is not null)
+            if (await _userRepository.GetUserByEmailAsync(command.Email) is not null)
             {
                 throw new DuplicateEmailException();
             }
@@ -33,7 +33,7 @@ namespace Application.Authentication.Commands.Register
                 Password = command.Password
             };
 
-            _userRepository.Add(user);
+            await _userRepository.AddAsync(user);
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 

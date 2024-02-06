@@ -19,7 +19,7 @@ namespace Application.Authentication.Queries.Login
 
         public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
-            if (_userRepository.GetUserByEmail(query.Email) is not User user)
+            if (await _userRepository.GetUserByEmailAsync(query.Email) is not User user)
             {
                 throw new Exception("User does not exist");
             }
