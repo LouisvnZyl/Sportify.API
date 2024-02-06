@@ -12,12 +12,10 @@ namespace WebApi.Controllers
     public class AuthenticationController : ControllerBase
     {
         private readonly ISender _mediator;
-        private readonly IValidator<RegisterCommand> _registorCommandValidator;
 
-        public AuthenticationController(ISender mediator, IValidator<RegisterCommand> registorCommandValidator)
+        public AuthenticationController(ISender mediator)
         {
             _mediator = mediator;
-            _registorCommandValidator = registorCommandValidator;
         }
 
         [HttpPost("register")]
