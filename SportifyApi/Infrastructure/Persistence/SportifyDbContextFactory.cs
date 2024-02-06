@@ -14,7 +14,7 @@ public class SportifyDbContextFactory : IDesignTimeDbContextFactory<SportifyDbCo
             .Build();
 
         // Get connection string from appsettings.json
-        var connectionString = "Server=BHAVYAPAT-PC\\SQLEXPRESS;Database=Sportify;Integrated Security=True; TrustServerCertificate=True;";
+        var connectionString = "Server=.;Database=Sportify;Integrated Security=True; TrustServerCertificate=True;";
 
         // Create DbContext options
         var optionsBuilder = new DbContextOptionsBuilder<SportifyDbContext>();
