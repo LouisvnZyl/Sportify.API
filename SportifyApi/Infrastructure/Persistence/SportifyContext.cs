@@ -3,12 +3,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
 
-public partial class SportifyContext : DbContext
+public class SportifyContext : DbContext
 {
-    public SportifyContext()
-    {
-    }
-
     public SportifyContext(DbContextOptions<SportifyContext> options)
         : base(options)
     {

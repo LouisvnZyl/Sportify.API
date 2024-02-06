@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class Preference
+public class Preference
 {
     public int PreferenceId { get; set; }
 

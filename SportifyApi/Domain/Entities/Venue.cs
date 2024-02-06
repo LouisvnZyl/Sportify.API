@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class Venue
+public class Venue
 {
     public int VenueId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class Booking
+public class Booking
 {
     public int BookingId { get; set; }
 

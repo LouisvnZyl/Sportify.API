@@ -12,23 +12,28 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.ToTable("PlayerStat");
 
-            builder.Property(e => e.PlayerId).ValueGeneratedNever();
+            builder.Property(e => e.PlayerId)
+                .ValueGeneratedNever();
 
             builder.Property(e => e.PlayerStatCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            builder.Property(e => e.PlayerStatCreatedTimestamp).HasColumnType("datetime");
+            builder.Property(e => e.PlayerStatCreatedTimestamp)
+                .HasColumnType("datetime");
 
-            builder.Property(e => e.PlayerStatId).ValueGeneratedOnAdd();
+            builder.Property(e => e.PlayerStatId)
+                .ValueGeneratedOnAdd();
 
             builder.Property(e => e.PlayerStatModifiedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            builder.Property(e => e.PlayerStatModifiedTimestamp).HasColumnType("datetime");
+            builder.Property(e => e.PlayerStatModifiedTimestamp)
+                .HasColumnType("datetime");
 
-            builder.Property(e => e.PlayerStatRating).HasColumnType("numeric(6, 5)");
+            builder.Property(e => e.PlayerStatRating)
+                .HasColumnType("decimal(18, 2)");
 
             builder.HasOne(d => d.Player).WithOne(p => p.PlayerStat)
                 .HasForeignKey<PlayerStat>(d => d.PlayerId)

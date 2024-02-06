@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class Review
+public class Review
 {
     public int ReviewId { get; set; }
 

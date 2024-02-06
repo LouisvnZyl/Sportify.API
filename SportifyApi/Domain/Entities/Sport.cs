@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class Sport
+public class Sport
 {
     public int SportId { get; set; }
 

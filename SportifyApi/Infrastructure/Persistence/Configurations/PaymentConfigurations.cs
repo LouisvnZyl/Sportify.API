@@ -10,21 +10,25 @@ namespace Infrastructure.Persistence.Configurations
         {
             builder.ToTable("Payment");
 
-            builder.Property(e => e.PaymentAmount).HasColumnType("money");
+            builder.Property(e => e.PaymentAmount)
+                .HasColumnType("decimal(18, 2)");
 
             builder.Property(e => e.PaymentCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            builder.Property(e => e.PaymentCreatedTimestamp).HasColumnType("datetime");
+            builder.Property(e => e.PaymentCreatedTimestamp)
+                .HasColumnType("datetime");
 
             builder.Property(e => e.PaymentModifiedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
 
-            builder.Property(e => e.PaymentModifiedTimestamp).HasColumnType("datetime");
+            builder.Property(e => e.PaymentModifiedTimestamp)
+                .HasColumnType("datetime");
 
-            builder.Property(e => e.PaymentTimestamp).HasColumnType("datetime");
+            builder.Property(e => e.PaymentTimestamp)
+                .HasColumnType("datetime");
 
             builder.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)

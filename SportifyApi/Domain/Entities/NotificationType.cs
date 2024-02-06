@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class NotificationType
+public class NotificationType
 {
     public int NotificationTypeId { get; set; }
 

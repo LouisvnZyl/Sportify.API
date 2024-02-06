@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public partial class PaymentStatus
+public class PaymentStatus
 {
     public int PaymentStatusId { get; set; }
 
