@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.Model;
+﻿namespace Domain.Entities;
 
 public partial class BookingResult
 {

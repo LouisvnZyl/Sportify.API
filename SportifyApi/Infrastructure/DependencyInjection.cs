@@ -17,7 +17,7 @@ namespace Infrastructure
             this IServiceCollection services,
             ConfigurationManager configuration)
         {
-            services.AddDbContext<SportifyDbContext>(options =>
+            services.AddDbContext<SportifyContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("SportifyConnection"));
             });

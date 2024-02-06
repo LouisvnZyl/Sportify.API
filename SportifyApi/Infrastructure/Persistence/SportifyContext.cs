@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Model;
+namespace Infrastructure.Persistence;
 
 public partial class SportifyContext : DbContext
 {
