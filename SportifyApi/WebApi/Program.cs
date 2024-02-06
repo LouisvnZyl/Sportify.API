@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using WebApi.Common.Errors;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
