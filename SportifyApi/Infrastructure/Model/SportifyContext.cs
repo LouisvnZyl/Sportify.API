@@ -51,6 +51,8 @@ public partial class SportifyContext : DbContext
     {
         modelBuilder.Entity<Booking>(entity =>
         {
+            entity.ToTable("Booking");
+
             entity.Property(e => e.BookingId).ValueGeneratedNever();
             entity.Property(e => e.BookingCreatedBy)
                 .HasMaxLength(50)
@@ -68,27 +70,27 @@ public partial class SportifyContext : DbContext
             entity.HasOne(d => d.BookingResult).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.BookingResultId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Bookings_BookingResults");
+                .HasConstraintName("FK_Booking_BookingResult");
 
             entity.HasOne(d => d.BookingStatus).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.BookingStatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Bookings_BookingStatus");
+                .HasConstraintName("FK_Booking_BookingStatus");
 
             entity.HasOne(d => d.Player).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.PlayerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Bookings_Players");
+                .HasConstraintName("FK_Booking_Player");
 
             entity.HasOne(d => d.Venue).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.VenueId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Bookings_Venues");
+                .HasConstraintName("FK_Booking_Venue");
         });
 
         modelBuilder.Entity<BookingResult>(entity =>
         {
-            entity.HasKey(e => e.BookingResultId).HasName("PK_BookingResult");
+            entity.ToTable("BookingResult");
 
             entity.Property(e => e.BookingResult1)
                 .HasMaxLength(50)
@@ -124,6 +126,8 @@ public partial class SportifyContext : DbContext
 
         modelBuilder.Entity<Notification>(entity =>
         {
+            entity.ToTable("Notification");
+
             entity.Property(e => e.NotificationCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -140,16 +144,18 @@ public partial class SportifyContext : DbContext
             entity.HasOne(d => d.NotificationType).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.NotificationTypeId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Notifications_NotificationTypes");
+                .HasConstraintName("FK_Notification_NotificationType");
 
             entity.HasOne(d => d.Player).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.PlayerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Notifications_Players");
+                .HasConstraintName("FK_Notification_Player");
         });
 
         modelBuilder.Entity<NotificationType>(entity =>
         {
+            entity.ToTable("NotificationType");
+
             entity.Property(e => e.NotificationType1)
                 .HasMaxLength(50)
                 .IsUnicode(false)
@@ -166,6 +172,8 @@ public partial class SportifyContext : DbContext
 
         modelBuilder.Entity<Payment>(entity =>
         {
+            entity.ToTable("Payment");
+
             entity.Property(e => e.PaymentAmount).HasColumnType("money");
             entity.Property(e => e.PaymentCreatedBy)
                 .HasMaxLength(50)
@@ -180,17 +188,17 @@ public partial class SportifyContext : DbContext
             entity.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Payments_Bookings");
+                .HasConstraintName("FK_Payment_Booking");
 
             entity.HasOne(d => d.PaymentStatus).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PaymentStatusId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Payments_PaymentStatus");
+                .HasConstraintName("FK_Payment_PaymentStatus");
 
             entity.HasOne(d => d.Player).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PlayerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Payments_Players");
+                .HasConstraintName("FK_Payment_Player");
         });
 
         modelBuilder.Entity<PaymentStatus>(entity =>
@@ -213,6 +221,8 @@ public partial class SportifyContext : DbContext
 
         modelBuilder.Entity<Player>(entity =>
         {
+            entity.ToTable("Player");
+
             entity.Property(e => e.PlayerCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -243,12 +253,14 @@ public partial class SportifyContext : DbContext
 
             entity.HasOne(d => d.Preference).WithMany(p => p.Players)
                 .HasForeignKey(d => d.PreferenceId)
-                .HasConstraintName("FK_Players_Preferences");
+                .HasConstraintName("FK_Player_Preference");
         });
 
         modelBuilder.Entity<PlayerStat>(entity =>
         {
             entity.HasKey(e => e.PlayerId);
+
+            entity.ToTable("PlayerStat");
 
             entity.Property(e => e.PlayerId).ValueGeneratedNever();
             entity.Property(e => e.PlayerStatCreatedBy)
@@ -265,16 +277,18 @@ public partial class SportifyContext : DbContext
             entity.HasOne(d => d.Player).WithOne(p => p.PlayerStat)
                 .HasForeignKey<PlayerStat>(d => d.PlayerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_PlayerStats_Players");
+                .HasConstraintName("FK_PlayerStat_Player");
 
             entity.HasOne(d => d.Sport).WithMany(p => p.PlayerStats)
                 .HasForeignKey(d => d.SportId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_PlayerStats_Sports");
+                .HasConstraintName("FK_PlayerStat_Sport");
         });
 
         modelBuilder.Entity<Preference>(entity =>
         {
+            entity.ToTable("Preference");
+
             entity.Property(e => e.PreferenceCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -286,15 +300,17 @@ public partial class SportifyContext : DbContext
 
             entity.HasOne(d => d.Sport).WithMany(p => p.Preferences)
                 .HasForeignKey(d => d.SportId)
-                .HasConstraintName("FK_Preferences_Sports");
+                .HasConstraintName("FK_Preference_Sport");
 
             entity.HasOne(d => d.Venue).WithMany(p => p.Preferences)
                 .HasForeignKey(d => d.VenueId)
-                .HasConstraintName("FK_Preferences_Venues");
+                .HasConstraintName("FK_Preference_Venue");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
+            entity.ToTable("Review");
+
             entity.Property(e => e.ReviewComment)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -314,11 +330,13 @@ public partial class SportifyContext : DbContext
             entity.HasOne(d => d.Player).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.PlayerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Reviews_Players");
+                .HasConstraintName("FK_Review_Player");
         });
 
         modelBuilder.Entity<Sport>(entity =>
         {
+            entity.ToTable("Sport");
+
             entity.Property(e => e.SportCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -337,11 +355,15 @@ public partial class SportifyContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
+            entity.ToTable("User");
+
             entity.Property(e => e.Id).ValueGeneratedNever();
         });
 
         modelBuilder.Entity<Venue>(entity =>
         {
+            entity.ToTable("Venue");
+
             entity.Property(e => e.VenueCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
@@ -359,20 +381,22 @@ public partial class SportifyContext : DbContext
 
             entity.HasOne(d => d.Review).WithMany(p => p.Venues)
                 .HasForeignKey(d => d.ReviewId)
-                .HasConstraintName("FK_Venues_Reviews");
+                .HasConstraintName("FK_Venue_Review");
 
             entity.HasOne(d => d.Sport).WithMany(p => p.Venues)
                 .HasForeignKey(d => d.SportId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_Venues_Sports");
+                .HasConstraintName("FK_Venue_Sport");
 
             entity.HasOne(d => d.VenueImage).WithMany(p => p.Venues)
                 .HasForeignKey(d => d.VenueImageId)
-                .HasConstraintName("FK_Venues_VenueImages");
+                .HasConstraintName("FK_Venue_VenueImage");
         });
 
         modelBuilder.Entity<VenueImage>(entity =>
         {
+            entity.ToTable("VenueImage");
+
             entity.Property(e => e.VenueImageCreatedBy)
                 .HasMaxLength(50)
                 .IsUnicode(false);
