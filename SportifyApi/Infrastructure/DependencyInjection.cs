@@ -22,6 +22,12 @@ namespace Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("SportifyConnection"));
             });
 
+            using (var serviceScope = services.BuildServiceProvider().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<SportifyContext>();
+                dbContext.Database.Migrate();
+            }
+
             services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
 
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
