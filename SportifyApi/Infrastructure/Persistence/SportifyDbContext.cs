@@ -1,7 +1,7 @@
 ﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.Persistance
+namespace Infrastructure.Persistence
 {
     public class SportifyDbContext : DbContext
     {

@@ -2,8 +2,8 @@
 using Application.Common.Interfaces.Services;
 using Application.Common.Persistence;
 using Infrastructure.Authentication;
-using Infrastructure.Persistance;
-using Infrastructure.Persistance.Repositories;
+using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
