@@ -6,15 +6,15 @@ public class PaymentStatus
 
     public string PaymentStatus1 { get; set; }
 
-    public DateTime PaymentStatusCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string PaymentStatusCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime PaymentStatusModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string PaymentStatusModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool PaymentStatusIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Payment> Payments { get; } = new List<Payment>();
 }

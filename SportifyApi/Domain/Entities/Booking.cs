@@ -2,33 +2,31 @@
 
 public class Booking
 {
-    public int BookingId { get; set; }
+    public Guid Id { get; set; }
 
-    public int PlayerId { get; set; }
+    public Guid PlayerId { get; set; }
 
-    public int VenueId { get; set; }
+    public Guid VenueId { get; set; }
 
-    public int BookingStatusId { get; set; }
+    public Guid BookingStatusId { get; set; }
 
-    public int BookingResultId { get; set; }
+    public Guid BookingResultId { get; set; }
 
     public string? BookingTeam { get; set; }
 
     public DateTime BookingDate { get; set; }
 
-    public TimeSpan BookingTime { get; set; }
-
     public short BookingDuration { get; set; }
 
-    public DateTime BookingCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string BookingCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime BookingModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string BookingModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool BookingIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual BookingResult? BookingResult { get; set; }
 

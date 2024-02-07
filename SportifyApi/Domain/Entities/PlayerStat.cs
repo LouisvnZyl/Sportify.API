@@ -18,15 +18,15 @@ public class PlayerStat
 
     public decimal PlayerStatRating { get; set; }
 
-    public DateTime PlayerStatCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string PlayerStatCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime PlayerStatModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string PlayerStatModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool PlayerStatIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual Player Player { get; set; }
 

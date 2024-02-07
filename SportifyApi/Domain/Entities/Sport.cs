@@ -8,15 +8,15 @@ public class Sport
 
     public string SportType { get; set; }
 
-    public DateTime SportCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string SportCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime SportModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string SportModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool SportIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<PlayerStat> PlayerStats { get; } = new List<PlayerStat>();
 

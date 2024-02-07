@@ -8,15 +8,15 @@ public class Preference
 
     public int? VenueId { get; set; }
 
-    public DateTime PreferenceCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string PreferenceCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime PreferenceModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string PreferenceModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool PreferenceIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Player> Players { get; } = new List<Player>();
 

@@ -6,15 +6,15 @@ public class BookingStatus
 
     public string BookingStatus1 { get; set; }
 
-    public DateTime BookingStatusCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string BookingStatusCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime BookingStatusModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string BookingStatusModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool BookingStatusIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 }

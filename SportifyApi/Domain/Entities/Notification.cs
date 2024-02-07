@@ -12,15 +12,15 @@ public class Notification
 
     public DateTime NotificationTimestamp { get; set; }
 
-    public DateTime NotificationCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string NotificationCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime NotificationModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string NotificationModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool NotificationIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual NotificationType NotificationType { get; set; }
 

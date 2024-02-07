@@ -16,15 +16,15 @@ public class Payment
 
     public decimal PaymentAmount { get; set; }
 
-    public DateTime PaymentCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string PaymentCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime PaymentModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string PaymentModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool PaymentIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual Booking Booking { get; set; }
 

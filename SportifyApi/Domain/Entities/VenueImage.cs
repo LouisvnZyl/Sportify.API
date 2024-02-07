@@ -6,15 +6,15 @@ public class VenueImage
 
     public string VenueImageUrl { get; set; }
 
-    public DateTime VenueImageCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string VenueImageCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime VenueImageModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string VenueImageModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool VenueImageIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Venue> Venues { get; } = new List<Venue>();
 }

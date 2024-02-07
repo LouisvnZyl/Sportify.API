@@ -14,15 +14,15 @@ public class Venue
 
     public string VenueLocation { get; set; }
 
-    public DateTime VenueCreatedTimestamp { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public string VenueCreatedBy { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime VenueModifiedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string VenueModifiedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public bool VenueIsDeleted { get; set; }
+    public bool IsDeleted { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 
