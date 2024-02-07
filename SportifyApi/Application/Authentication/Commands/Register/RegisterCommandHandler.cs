@@ -40,7 +40,7 @@ namespace Application.Authentication.Commands.Register
                 IsDeleted = false,
             };
 
-            await _userRepository.AddAsync(user);
+            await _userRepository.CreateAsync(user);
 
             var player = new Player
             {
@@ -58,7 +58,7 @@ namespace Application.Authentication.Commands.Register
                 IsDeleted = false
             };
 
-            await _playerRepository.AddAsync(player);
+            await _playerRepository.CreateAsync(player);
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 

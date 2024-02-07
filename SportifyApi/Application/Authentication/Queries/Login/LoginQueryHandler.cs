@@ -24,6 +24,11 @@ namespace Application.Authentication.Queries.Login
                 throw new Exception("User does not exist");
             }
 
+            if (user.IsDeleted)
+            {
+                throw new Exception("User does not exist");
+            }
+
             if (user.Password != query.Password)
             {
                 throw new Exception("Invalid Password");

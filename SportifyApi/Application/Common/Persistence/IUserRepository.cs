@@ -2,9 +2,8 @@
 
 namespace Application.Common.Persistence
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
         Task<User?> GetUserByEmailAsync(string email);
-        Task AddAsync(User user);
     }
 }

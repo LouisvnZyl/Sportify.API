@@ -1,9 +1,6 @@
-﻿using Domain.Entities;
-
-namespace Application.Common.Persistence
+﻿namespace Application.Common.Persistence
 {
-    public interface IPlayerRepository
-    {
-        Task AddAsync(Player player);
+    public interface IPlayerRepository : IBaseRepository<Player>
+    { 
     }
 }

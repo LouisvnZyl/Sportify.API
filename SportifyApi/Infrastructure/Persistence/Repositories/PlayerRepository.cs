@@ -2,19 +2,13 @@
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class PlayerRepository : IPlayerRepository
+    public class PlayerRepository : BaseRepository<Player>, IPlayerRepository
     {
         private readonly SportifyContext _dbContext;
 
-        public PlayerRepository(SportifyContext dbContext)
+        public PlayerRepository(SportifyContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        public async Task AddAsync(Player player)
-        {
-            _dbContext.Add(player);
-            await _dbContext.SaveChangesAsync();
         }
     }
 }

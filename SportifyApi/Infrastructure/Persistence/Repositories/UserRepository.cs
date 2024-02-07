@@ -4,19 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
         private readonly SportifyContext _dbContext;
 
-        public UserRepository(SportifyContext dbContext)
+        public UserRepository(SportifyContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
-        }
-
-        public async Task AddAsync(User user)
-        {
-            _dbContext.Add(user);
-            await _dbContext.SaveChangesAsync();
         }
 
         public async Task<User?> GetUserByEmailAsync(string email)
