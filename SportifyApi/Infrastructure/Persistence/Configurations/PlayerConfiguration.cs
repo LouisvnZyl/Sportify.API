@@ -8,7 +8,7 @@ namespace Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Player> builder)
         {
-            builder.ToTable("Players");
+            builder.ToTable("Player");
 
             builder.HasKey(p => p.Id);
 
