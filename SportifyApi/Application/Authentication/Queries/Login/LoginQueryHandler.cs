@@ -34,7 +34,7 @@ namespace Application.Authentication.Queries.Login
 
             return new AuthenticationResult
             {
-                User = user,
+                UserId = user.Id.ToString(),
                 Token = token
             };
         }

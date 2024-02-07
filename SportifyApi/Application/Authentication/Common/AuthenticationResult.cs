@@ -1,10 +1,9 @@
-﻿using Domain.Entities;
-
-namespace Application.Authentication.Common
+﻿namespace Application.Authentication.Common
 {
     public class AuthenticationResult
     {
-        public User User { get; set; }
+        public string UserId { get; set; }
+
         public string Token { get; set; }
     }
 }

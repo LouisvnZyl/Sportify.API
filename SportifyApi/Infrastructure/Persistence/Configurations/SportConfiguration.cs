@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class SportConfigurations : IEntityTypeConfiguration<Sport>
+    public class SportConfiguration : IEntityTypeConfiguration<Sport>
     {
         public void Configure(EntityTypeBuilder<Sport> builder)
         {

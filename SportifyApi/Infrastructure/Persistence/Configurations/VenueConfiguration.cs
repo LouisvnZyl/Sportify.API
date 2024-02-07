@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class VenueConfigurations : IEntityTypeConfiguration<Venue>
+    public class VenueConfiguration : IEntityTypeConfiguration<Venue>
     {
         public void Configure(EntityTypeBuilder<Venue> builder)
         {

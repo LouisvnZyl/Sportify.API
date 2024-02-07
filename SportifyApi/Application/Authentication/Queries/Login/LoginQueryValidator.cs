@@ -11,7 +11,6 @@ namespace Application.Authentication.Queries.Login
                 .NotEmpty();
 
             RuleFor(x => x.Password)
-                .MinimumLength(8)
                 .NotEmpty();
         }
     }

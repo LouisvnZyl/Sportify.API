@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class PreferenceConfigurations : IEntityTypeConfiguration<Preference>
+    public class PreferenceConfiguration : IEntityTypeConfiguration<Preference>
     {
         public void Configure(EntityTypeBuilder<Preference> builder)
         {

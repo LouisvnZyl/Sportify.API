@@ -1,46 +1,32 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Entities;
 
 public class Player
 {
-    public int PlayerId { get; set; }
+    public Guid Id { get; set; }
 
-    public int? PreferenceId { get; set; }
+    public Guid UserId { get; set; }
 
-    public string PlayerFirstName { get; set; }
+    public string FirstName { get; set; }
 
-    public string PlayerLastName { get; set; }
+    public string LastName { get; set; }
 
-    public string PlayerEmailAddress { get; set; }
+    public string Nickname { get; set; }
 
-    public string? PlayerPhoneNumber { get; set; }
+    public string PhoneNumber { get; set; }
 
-    public string? PlayerDateOfBirth { get; set; }
+    public DateTime DateOfBirth { get; set; }
 
-    public string? PlayerProfilePictureUrl { get; set; }
+    public string? ProfilePictureUrl { get; set; }
 
-    public bool PlayerIsPremium { get; set; }
+    public DateTime CreatedDate { get; set; }
 
-    public DateTime PlayerCreationTimestamp { get; set; }
+    public string CreatedBy { get; set; }
 
-    public DateTime PlayerCreatedTimestamp { get; set; }
+    public DateTime ModifiedDate { get; set; }
 
-    public string PlayerCreatedBy { get; set; }
+    public string ModifiedBy { get; set; }
 
-    public DateTime PlayerModifiedTimestamp { get; set; }
+    public bool IsDeleted { get; set; }
 
-    public string PlayerModifiedBy { get; set; }
-
-    public bool PlayerIsDeleted { get; set; }
-
-    public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
-
-    public virtual ICollection<Notification> Notifications { get; } = new List<Notification>();
-
-    public virtual ICollection<Payment> Payments { get; } = new List<Payment>();
-
-    public virtual PlayerStat? PlayerStat { get; set; }
-
-    public virtual Preference? Preference { get; set; }
-
-    public virtual ICollection<Review> Reviews { get; } = new List<Review>();
+    public virtual User User { get; set; }
 }

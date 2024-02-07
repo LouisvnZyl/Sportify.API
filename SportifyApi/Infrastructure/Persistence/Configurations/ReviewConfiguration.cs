@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class ReviewConfigurations : IEntityTypeConfiguration<Review>
+    public class ReviewConfiguration : IEntityTypeConfiguration<Review>
     {
         public void Configure(EntityTypeBuilder<Review> builder)
         {
@@ -32,10 +32,10 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.Property(e => e.ReviewTimestamp).HasColumnType("datetime");
 
-            builder.HasOne(d => d.Player).WithMany(p => p.Reviews)
-                .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasConstraintName("FK_Review_Player");
+            //builder.HasOne(d => d.Player).WithMany(p => p.Reviews)
+            //    .HasForeignKey(d => d.PlayerId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasConstraintName("FK_Review_Player");
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class PaymentConfigurations : IEntityTypeConfiguration<Payment>
+    public class PaymentConfiguration : IEntityTypeConfiguration<Payment>
     {
         public void Configure(EntityTypeBuilder<Payment> builder)
         {
@@ -41,12 +41,12 @@ namespace Infrastructure.Persistence.Configurations
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Payment_PaymentStatus");
 
-            builder
-                .HasOne(d => d.Player)
-                .WithMany(p => p.Payments)
-                .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasConstraintName("FK_Payment_Player");
+            //builder
+            //    .HasOne(d => d.Player)
+            //    .WithMany(p => p.Payments)
+            //    .HasForeignKey(d => d.PlayerId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasConstraintName("FK_Payment_Player");
         }
     }
 }

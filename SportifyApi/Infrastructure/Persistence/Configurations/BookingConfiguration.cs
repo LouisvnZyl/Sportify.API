@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class BookingConfigurations : IEntityTypeConfiguration<Booking>
+    public class BookingConfiguration : IEntityTypeConfiguration<Booking>
     {
         public void Configure(EntityTypeBuilder<Booking> builder)
         {
@@ -40,10 +40,10 @@ namespace Infrastructure.Persistence.Configurations
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Booking_BookingStatus");
 
-            builder.HasOne(d => d.Player).WithMany(p => p.Bookings)
-                .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasConstraintName("FK_Booking_Player");
+            //builder.HasOne(d => d.Player).WithMany(p => p.Bookings)
+            //    .HasForeignKey(d => d.PlayerId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasConstraintName("FK_Booking_Player");
 
             builder.HasOne(d => d.Venue).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.VenueId)

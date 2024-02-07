@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class NotificationConfigurations : IEntityTypeConfiguration<Notification>
+    public class NotificationConfiguration : IEntityTypeConfiguration<Notification>
     {
         public void Configure(EntityTypeBuilder<Notification> builder)
         {
@@ -33,10 +33,10 @@ namespace Infrastructure.Persistence.Configurations
                 .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Notification_NotificationType");
 
-            builder.HasOne(d => d.Player).WithMany(p => p.Notifications)
-                .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasConstraintName("FK_Notification_Player");
+            //builder.HasOne(d => d.Player).WithMany(p => p.Notifications)
+            //    .HasForeignKey(d => d.PlayerId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasConstraintName("FK_Notification_Player");
         }
     }
 }

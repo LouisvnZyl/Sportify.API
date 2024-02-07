@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class PaymentStatusConfigurations : IEntityTypeConfiguration<PaymentStatus>
+    public class PaymentStatusConfiguration : IEntityTypeConfiguration<PaymentStatus>
     {
         public void Configure(EntityTypeBuilder<PaymentStatus> builder)
         {

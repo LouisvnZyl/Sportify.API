@@ -45,20 +45,20 @@ public class SportifyContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        new BookingConfigurations().Configure(modelBuilder.Entity<Booking>());
+        new BookingConfiguration().Configure(modelBuilder.Entity<Booking>());
         new BookingResultConfiguration().Configure(modelBuilder.Entity<BookingResult>());
-        new BookingStatusConfigurations().Configure(modelBuilder.Entity<BookingStatus>());
-        new NotificationConfigurations().Configure(modelBuilder.Entity<Notification>());
-        new NotificationTypeConfigurations().Configure(modelBuilder.Entity<NotificationType>());
-        new PaymentConfigurations().Configure(modelBuilder.Entity<Payment>());
-        new PaymentStatusConfigurations().Configure(modelBuilder.Entity<PaymentStatus>());
-        new PlayerConfigurations().Configure(modelBuilder.Entity<Player>());
-        new PlayerStatConfigurations().Configure(modelBuilder.Entity<PlayerStat>());
-        new PreferenceConfigurations().Configure(modelBuilder.Entity<Preference>());
-        new ReviewConfigurations().Configure(modelBuilder.Entity<Review>());
-        new SportConfigurations().Configure(modelBuilder.Entity<Sport>());
-        new UserConfigurations().Configure(modelBuilder.Entity<User>());
-        new VenueConfigurations().Configure(modelBuilder.Entity<Venue>());
-        new VenueImageConfigurations().Configure(modelBuilder.Entity<VenueImage>());
+        new BookingStatusConfiguration().Configure(modelBuilder.Entity<BookingStatus>());
+        new NotificationConfiguration().Configure(modelBuilder.Entity<Notification>());
+        new NotificationTypeConfiguration().Configure(modelBuilder.Entity<NotificationType>());
+        new PaymentConfiguration().Configure(modelBuilder.Entity<Payment>());
+        new PaymentStatusConfiguration().Configure(modelBuilder.Entity<PaymentStatus>());
+        new PlayerConfiguration().Configure(modelBuilder.Entity<Player>());
+        new PlayerStatConfiguration().Configure(modelBuilder.Entity<PlayerStat>());
+        new PreferenceConfiguration().Configure(modelBuilder.Entity<Preference>());
+        new ReviewConfiguration().Configure(modelBuilder.Entity<Review>());
+        new SportConfiguration().Configure(modelBuilder.Entity<Sport>());
+        new UserConfiguration().Configure(modelBuilder.Entity<User>());
+        new VenueConfiguration().Configure(modelBuilder.Entity<Venue>());
+        new VenueImageConfiguration().Configure(modelBuilder.Entity<VenueImage>());
     }
 }

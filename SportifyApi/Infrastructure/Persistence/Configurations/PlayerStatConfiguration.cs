@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Persistence.Configurations
 {
-    public class PlayerStatConfigurations : IEntityTypeConfiguration<PlayerStat>
+    public class PlayerStatConfiguration : IEntityTypeConfiguration<PlayerStat>
     {
         public void Configure(EntityTypeBuilder<PlayerStat> builder)
         {
@@ -36,10 +36,10 @@ namespace Infrastructure.Persistence.Configurations
                 .HasColumnType("decimal")
                 .HasPrecision(18, 2);
 
-            builder.HasOne(d => d.Player).WithOne(p => p.PlayerStat)
-                .HasForeignKey<PlayerStat>(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction)
-                .HasConstraintName("FK_PlayerStat_Player");
+            //builder.HasOne(d => d.Player).WithOne(p => p.PlayerStat)
+            //    .HasForeignKey<PlayerStat>(d => d.PlayerId)
+            //    .OnDelete(DeleteBehavior.NoAction)
+            //    .HasConstraintName("FK_PlayerStat_Player");
 
             builder.HasOne(d => d.Sport).WithMany(p => p.PlayerStats)
                 .HasForeignKey(d => d.SportId)
