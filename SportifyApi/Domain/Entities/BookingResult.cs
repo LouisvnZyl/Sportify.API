@@ -2,7 +2,7 @@
 
 public class BookingResult
 {
-    public int BookingResultId { get; set; }
+    public Guid Id { get; set; }
 
     public string BookingResult1 { get; set; }
 

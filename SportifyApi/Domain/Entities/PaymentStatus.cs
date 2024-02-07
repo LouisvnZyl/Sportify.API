@@ -2,9 +2,9 @@
 
 public class PaymentStatus
 {
-    public int PaymentStatusId { get; set; }
+    public Guid Id { get; set; }
 
-    public string PaymentStatus1 { get; set; }
+    public string Name { get; set; }
 
     public DateTime CreatedDate { get; set; }
 

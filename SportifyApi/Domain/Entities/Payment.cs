@@ -4,7 +4,7 @@ namespace Domain.Entities;
 
 public class Payment
 {
-    public int PaymentId { get; set; }
+    public Guid Id { get; set; }
 
     public int BookingId { get; set; }
 

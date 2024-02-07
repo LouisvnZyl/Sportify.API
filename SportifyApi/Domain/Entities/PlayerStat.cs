@@ -2,7 +2,7 @@
 
 public class PlayerStat
 {
-    public int PlayerStatId { get; set; }
+    public Guid Id { get; set; }
 
     public int PlayerId { get; set; }
 

@@ -2,7 +2,7 @@
 
 public class Venue
 {
-    public int VenueId { get; set; }
+    public Guid Id { get; set; }
 
     public int? VenueImageId { get; set; }
 

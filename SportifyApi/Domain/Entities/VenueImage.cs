@@ -2,7 +2,7 @@
 
 public class VenueImage
 {
-    public int VenueImageId { get; set; }
+    public Guid Id { get; set; }
 
     public string VenueImageUrl { get; set; }
 

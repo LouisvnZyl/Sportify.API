@@ -2,7 +2,7 @@
 
 public class Preference
 {
-    public int PreferenceId { get; set; }
+    public Guid Id { get; set; }
 
     public int? SportId { get; set; }
 
