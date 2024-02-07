@@ -4,15 +4,15 @@ public class PaymentStatus
 {
     public int PaymentStatusId { get; set; }
 
-    public string PaymentStatus1 { get; set; } = null!;
+    public string PaymentStatus1 { get; set; }
 
     public DateTime PaymentStatusCreatedTimestamp { get; set; }
 
-    public string PaymentStatusCreatedBy { get; set; } = null!;
+    public string PaymentStatusCreatedBy { get; set; }
 
     public DateTime PaymentStatusModifiedTimestamp { get; set; }
 
-    public string PaymentStatusModifiedBy { get; set; } = null!;
+    public string PaymentStatusModifiedBy { get; set; }
 
     public bool PaymentStatusIsDeleted { get; set; }
 

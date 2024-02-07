@@ -33,16 +33,17 @@ namespace Infrastructure.Persistence.Configurations
                 .HasColumnType("datetime");
 
             builder.Property(e => e.PlayerStatRating)
-                .HasColumnType("decimal(18, 2)");
+                .HasColumnType("decimal")
+                .HasPrecision(18, 2);
 
             builder.HasOne(d => d.Player).WithOne(p => p.PlayerStat)
                 .HasForeignKey<PlayerStat>(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_PlayerStat_Player");
 
             builder.HasOne(d => d.Sport).WithMany(p => p.PlayerStats)
                 .HasForeignKey(d => d.SportId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_PlayerStat_Sport");
         }
     }

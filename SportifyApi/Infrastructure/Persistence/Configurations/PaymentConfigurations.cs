@@ -11,7 +11,8 @@ namespace Infrastructure.Persistence.Configurations
             builder.ToTable("Payment");
 
             builder.Property(e => e.PaymentAmount)
-                .HasColumnType("decimal(18, 2)");
+                .HasColumnType("decimal")
+                .HasPrecision(18, 2);
 
             builder.Property(e => e.PaymentCreatedBy)
                 .HasMaxLength(50)
@@ -32,17 +33,19 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(d => d.Booking).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.BookingId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Payment_Booking");
 
             builder.HasOne(d => d.PaymentStatus).WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PaymentStatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Payment_PaymentStatus");
 
-            builder.HasOne(d => d.Player).WithMany(p => p.Payments)
+            builder
+                .HasOne(d => d.Player)
+                .WithMany(p => p.Payments)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Payment_Player");
         }
     }

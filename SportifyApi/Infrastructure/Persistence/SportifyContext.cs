@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Infrastructure.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Persistence;
@@ -39,4 +40,25 @@ public class SportifyContext : DbContext
     public virtual DbSet<Venue> Venues { get; set; }
 
     public virtual DbSet<VenueImage> VenueImages { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        new BookingConfigurations().Configure(modelBuilder.Entity<Booking>());
+        new BookingResultConfiguration().Configure(modelBuilder.Entity<BookingResult>());
+        new BookingStatusConfigurations().Configure(modelBuilder.Entity<BookingStatus>());
+        new NotificationConfigurations().Configure(modelBuilder.Entity<Notification>());
+        new NotificationTypeConfigurations().Configure(modelBuilder.Entity<NotificationType>());
+        new PaymentConfigurations().Configure(modelBuilder.Entity<Payment>());
+        new PaymentStatusConfigurations().Configure(modelBuilder.Entity<PaymentStatus>());
+        new PlayerConfigurations().Configure(modelBuilder.Entity<Player>());
+        new PlayerStatConfigurations().Configure(modelBuilder.Entity<PlayerStat>());
+        new PreferenceConfigurations().Configure(modelBuilder.Entity<Preference>());
+        new ReviewConfigurations().Configure(modelBuilder.Entity<Review>());
+        new SportConfigurations().Configure(modelBuilder.Entity<Sport>());
+        new UserConfigurations().Configure(modelBuilder.Entity<User>());
+        new VenueConfigurations().Configure(modelBuilder.Entity<Venue>());
+        new VenueImageConfigurations().Configure(modelBuilder.Entity<VenueImage>());
+    }
 }

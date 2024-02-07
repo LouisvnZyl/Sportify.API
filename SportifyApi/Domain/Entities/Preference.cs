@@ -10,11 +10,11 @@ public class Preference
 
     public DateTime PreferenceCreatedTimestamp { get; set; }
 
-    public string PreferenceCreatedBy { get; set; } = null!;
+    public string PreferenceCreatedBy { get; set; }
 
     public DateTime PreferenceModifiedTimestamp { get; set; }
 
-    public string PreferenceModifiedBy { get; set; } = null!;
+    public string PreferenceModifiedBy { get; set; }
 
     public bool PreferenceIsDeleted { get; set; }
 

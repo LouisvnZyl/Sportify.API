@@ -6,11 +6,11 @@ public class Player
 
     public int? PreferenceId { get; set; }
 
-    public string PlayerFirstName { get; set; } = null!;
+    public string PlayerFirstName { get; set; }
 
-    public string PlayerLastName { get; set; } = null!;
+    public string PlayerLastName { get; set; }
 
-    public string PlayerEmailAddress { get; set; } = null!;
+    public string PlayerEmailAddress { get; set; }
 
     public string? PlayerPhoneNumber { get; set; }
 
@@ -24,11 +24,11 @@ public class Player
 
     public DateTime PlayerCreatedTimestamp { get; set; }
 
-    public string PlayerCreatedBy { get; set; } = null!;
+    public string PlayerCreatedBy { get; set; }
 
     public DateTime PlayerModifiedTimestamp { get; set; }
 
-    public string PlayerModifiedBy { get; set; } = null!;
+    public string PlayerModifiedBy { get; set; }
 
     public bool PlayerIsDeleted { get; set; }
 

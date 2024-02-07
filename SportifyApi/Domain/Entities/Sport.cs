@@ -4,17 +4,17 @@ public class Sport
 {
     public int SportId { get; set; }
 
-    public string SportName { get; set; } = null!;
+    public string SportName { get; set; }
 
-    public string SportType { get; set; } = null!;
+    public string SportType { get; set; }
 
     public DateTime SportCreatedTimestamp { get; set; }
 
-    public string SportCreatedBy { get; set; } = null!;
+    public string SportCreatedBy { get; set; }
 
     public DateTime SportModifiedTimestamp { get; set; }
 
-    public string SportModifiedBy { get; set; } = null!;
+    public string SportModifiedBy { get; set; }
 
     public bool SportIsDeleted { get; set; }
 

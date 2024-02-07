@@ -6,23 +6,23 @@ public class Review
 
     public int PlayerId { get; set; }
 
-    public string ReviewRating { get; set; } = null!;
+    public string ReviewRating { get; set; }
 
-    public string ReviewComment { get; set; } = null!;
+    public string ReviewComment { get; set; }
 
     public DateTime ReviewTimestamp { get; set; }
 
     public DateTime ReviewCreatedTimestamp { get; set; }
 
-    public string ReviewCreatedBy { get; set; } = null!;
+    public string ReviewCreatedBy { get; set; }
 
     public DateTime ReviewModifiedTimestamp { get; set; }
 
-    public string ReviewModifiedBy { get; set; } = null!;
+    public string ReviewModifiedBy { get; set; }
 
     public bool ReviewIsDeleted { get; set; }
 
-    public virtual Player Player { get; set; } = null!;
+    public virtual Player Player { get; set; }
 
     public virtual ICollection<Venue> Venues { get; } = new List<Venue>();
 }

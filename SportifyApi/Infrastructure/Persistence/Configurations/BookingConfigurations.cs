@@ -32,22 +32,22 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(d => d.BookingResult).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.BookingResultId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Booking_BookingResult");
 
             builder.HasOne(d => d.BookingStatus).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.BookingStatusId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Booking_BookingStatus");
 
             builder.HasOne(d => d.Player).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Booking_Player");
 
             builder.HasOne(d => d.Venue).WithMany(p => p.Bookings)
                 .HasForeignKey(d => d.VenueId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Booking_Venue");
         }
     }

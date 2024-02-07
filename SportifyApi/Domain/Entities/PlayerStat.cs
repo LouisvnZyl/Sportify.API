@@ -20,15 +20,15 @@ public class PlayerStat
 
     public DateTime PlayerStatCreatedTimestamp { get; set; }
 
-    public string PlayerStatCreatedBy { get; set; } = null!;
+    public string PlayerStatCreatedBy { get; set; }
 
     public DateTime PlayerStatModifiedTimestamp { get; set; }
 
-    public string PlayerStatModifiedBy { get; set; } = null!;
+    public string PlayerStatModifiedBy { get; set; }
 
     public bool PlayerStatIsDeleted { get; set; }
 
-    public virtual Player Player { get; set; } = null!;
+    public virtual Player Player { get; set; }
 
-    public virtual Sport Sport { get; set; } = null!;
+    public virtual Sport Sport { get; set; }
 }

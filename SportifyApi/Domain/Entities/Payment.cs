@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain.Entities;
 
 public class Payment
 {
@@ -16,17 +18,17 @@ public class Payment
 
     public DateTime PaymentCreatedTimestamp { get; set; }
 
-    public string PaymentCreatedBy { get; set; } = null!;
+    public string PaymentCreatedBy { get; set; }
 
     public DateTime PaymentModifiedTimestamp { get; set; }
 
-    public string PaymentModifiedBy { get; set; } = null!;
+    public string PaymentModifiedBy { get; set; }
 
     public bool PaymentIsDeleted { get; set; }
 
-    public virtual Booking Booking { get; set; } = null!;
+    public virtual Booking Booking { get; set; }
 
-    public virtual PaymentStatus PaymentStatus { get; set; } = null!;
+    public virtual PaymentStatus PaymentStatus { get; set; }
 
-    public virtual Player Player { get; set; } = null!;
+    public virtual Player Player { get; set; }
 }

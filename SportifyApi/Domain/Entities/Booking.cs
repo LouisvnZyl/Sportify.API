@@ -12,7 +12,7 @@ public class Booking
 
     public int BookingResultId { get; set; }
 
-    public string BookingTeam { get; set; } = null!;
+    public string? BookingTeam { get; set; }
 
     public DateTime BookingDate { get; set; }
 
@@ -22,21 +22,21 @@ public class Booking
 
     public DateTime BookingCreatedTimestamp { get; set; }
 
-    public string BookingCreatedBy { get; set; } = null!;
+    public string BookingCreatedBy { get; set; }
 
     public DateTime BookingModifiedTimestamp { get; set; }
 
-    public string BookingModifiedBy { get; set; } = null!;
+    public string BookingModifiedBy { get; set; }
 
     public bool BookingIsDeleted { get; set; }
 
-    public virtual BookingResult BookingResult { get; set; } = null!;
+    public virtual BookingResult? BookingResult { get; set; }
 
-    public virtual BookingStatus BookingStatus { get; set; } = null!;
+    public virtual BookingStatus BookingStatus { get; set; }
 
     public virtual ICollection<Payment> Payments { get; } = new List<Payment>();
 
-    public virtual Player Player { get; set; } = null!;
+    public virtual Player Player { get; set; }
 
-    public virtual Venue Venue { get; set; } = null!;
+    public virtual Venue Venue { get; set; }
 }

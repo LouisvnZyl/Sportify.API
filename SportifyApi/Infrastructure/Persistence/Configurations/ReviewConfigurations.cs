@@ -34,7 +34,7 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(d => d.Player).WithMany(p => p.Reviews)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Review_Player");
         }
     }

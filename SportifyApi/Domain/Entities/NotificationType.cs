@@ -4,15 +4,15 @@ public class NotificationType
 {
     public int NotificationTypeId { get; set; }
 
-    public string NotificationType1 { get; set; } = null!;
+    public string NotificationType1 { get; set; }
 
     public DateTime NotificationTypeCreatedTimestamp { get; set; }
 
-    public string NotificationTypeCreatedBy { get; set; } = null!;
+    public string NotificationTypeCreatedBy { get; set; }
 
     public DateTime NotificationTypeModifiedTimestamp { get; set; }
 
-    public string NotificationTypeModifiedBy { get; set; } = null!;
+    public string NotificationTypeModifiedBy { get; set; }
 
     public bool NotificationTypeIsDeleted { get; set; }
 

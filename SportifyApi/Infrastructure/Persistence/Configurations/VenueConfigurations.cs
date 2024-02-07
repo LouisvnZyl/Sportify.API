@@ -36,7 +36,7 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(d => d.Sport).WithMany(p => p.Venues)
                 .HasForeignKey(d => d.SportId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Venue_Sport");
 
             builder.HasOne(d => d.VenueImage).WithMany(p => p.Venues)

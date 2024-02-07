@@ -30,12 +30,12 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.HasOne(d => d.NotificationType).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.NotificationTypeId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Notification_NotificationType");
 
             builder.HasOne(d => d.Player).WithMany(p => p.Notifications)
                 .HasForeignKey(d => d.PlayerId)
-                .OnDelete(DeleteBehavior.ClientSetNull)
+                .OnDelete(DeleteBehavior.NoAction)
                 .HasConstraintName("FK_Notification_Player");
         }
     }
