@@ -1,5 +1,4 @@
 ﻿using Application.Authentication.Common;
-using Application.Common.Errors;
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
 using Domain.Entities;
@@ -24,7 +23,7 @@ namespace Application.Authentication.Commands.Register
         {
             if (await _userRepository.GetUserByEmailAsync(command.Email) is not null)
             {
-                throw new DuplicateEmailException();
+                throw new Exception("User not found");
             }
 
             var user = new User
