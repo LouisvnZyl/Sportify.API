@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-public class Player
+public class Player : IEntity
 {
     public Guid Id { get; set; }
 
