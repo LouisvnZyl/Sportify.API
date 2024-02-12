@@ -21,7 +21,7 @@ namespace Application.Authentication.Queries.Login
 
         public async Task<ApiResponse<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
-            if (await _userRepository.GetUserByEmailAsync(query.Email) is not User user)
+            if (await _userRepository.GetUserByEmailAsync(query.Email, cancellationToken) is not User user)
             {
                 throw new ApiException("User does not exist");
             }

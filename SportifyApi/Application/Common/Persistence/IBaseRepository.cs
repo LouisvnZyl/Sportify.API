@@ -4,12 +4,12 @@ namespace Application.Common.Persistence
 {
     public interface IBaseRepository<T> where T : class
     {
-        Task CreateAsync(T entity);
+        Task CreateAsync(T entity, CancellationToken cancellationToken);
 
-        Task<IEnumerable<T>> GetAllAsync();
+        Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
 
-        Task<T?> GetAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
 
-        Task RemoveById(Guid id);
+        Task RemoveById(Guid id, CancellationToken cancellationToken);
     }
 }

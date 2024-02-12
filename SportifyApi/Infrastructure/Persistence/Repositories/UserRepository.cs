@@ -13,9 +13,9 @@ namespace Infrastructure.Persistence.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<User?> GetUserByEmailAsync(string email)
+        public async Task<User?> GetUserByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            return await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email);
+            return await _dbContext.Users.SingleOrDefaultAsync(user => user.Email == email, cancellationToken);
         }
     }
 }

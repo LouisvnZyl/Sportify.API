@@ -11,42 +11,24 @@ namespace Application.Authentication.Commands.Register
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResponse<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IPlayerRepository _playerRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository, IPlayerRepository playerRepository)
+        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
         {
             _jwtTokenGenerator = jwtTokenGenerator;
             _userRepository = userRepository;
-            _playerRepository = playerRepository;
         }
 
         public async Task<ApiResponse<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
-            if (await _userRepository.GetUserByEmailAsync(command.Email) is not null)
+            if (await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken) is not null)
             {
                 throw new ApiException("User not found");
             }
 
-            var user = new User
-            {
-                Id = Guid.NewGuid(),
-                Username = command.Username,
-                Email = command.Email,
-                Password = command.Password,
-                CreatedBy = command.Email,
-                ModifiedBy = command.Email,
-                CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow,
-                IsDeleted = false,
-            };
-
-            await _userRepository.CreateAsync(user);
-
             var player = new Player
             {
                 Id = Guid.NewGuid(),
-                UserId = user.Id,
                 FirstName = command.FirstName,
                 LastName = command.LastName,
                 Nickname = command.Nickname,
@@ -59,7 +41,21 @@ namespace Application.Authentication.Commands.Register
                 IsDeleted = false
             };
 
-            await _playerRepository.CreateAsync(player);
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                Username = command.Username,
+                Email = command.Email,
+                Password = command.Password,
+                CreatedBy = command.Email,
+                ModifiedBy = command.Email,
+                CreatedDate = DateTime.UtcNow,
+                ModifiedDate = DateTime.UtcNow,
+                IsDeleted = false,
+                Player = player
+            };
+
+            await _userRepository.CreateAsync(user, cancellationToken);
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 

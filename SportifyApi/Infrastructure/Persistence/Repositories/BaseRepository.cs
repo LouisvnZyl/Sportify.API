@@ -16,32 +16,32 @@ namespace Infrastructure.Persistence.Repositories
             _dbSet = dbContext.Set<T>();
         }
 
-        public async Task CreateAsync(T entity)
+        public async Task CreateAsync(T entity, CancellationToken cancellationToken)
         {
             _dbContext.Add(entity);
-            await _dbContext.SaveChangesAsync();
+            await _dbContext.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<IEnumerable<T>> GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken)
         {
-            return await _dbSet.ToListAsync();
+            return await _dbSet.ToListAsync(cancellationToken);
         }
 
-        public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate)
+        public async Task<T?> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
         { 
             return await _dbSet
                 .Where(predicate)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(cancellationToken);
         }
 
-        public async Task RemoveById(Guid id)
+        public async Task RemoveById(Guid id, CancellationToken cancellationToken)
         {
             var obj = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
             if(obj != null)
             {
                 obj.IsDeleted = true;
                 _dbSet.Update(obj);
-                await _dbContext.SaveChangesAsync();
+                await _dbContext.SaveChangesAsync(cancellationToken);
             }
         }
     }
