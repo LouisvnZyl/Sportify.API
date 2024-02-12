@@ -44,7 +44,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasOne(u => u.Player)
                 .WithOne(p => p.User)
                 .HasForeignKey<Player>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 
 namespace Infrastructure.Persistence.Configurations
 {
@@ -52,7 +51,7 @@ namespace Infrastructure.Persistence.Configurations
             builder.HasOne(p => p.User)
                 .WithOne(u => u.Player)
                 .HasForeignKey<Player>(p => p.UserId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }
