@@ -52,6 +52,11 @@ namespace Infrastructure.Persistence.Configurations
                 .WithOne(u => u.Player)
                 .HasForeignKey<Player>(p => p.UserId)
                 .OnDelete(DeleteBehavior.NoAction);
+
+            builder.HasMany(p => p.PlayerStats)
+                .WithOne(ps => ps.Player)
+                .HasForeignKey(p => p.PlayerId)
+                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

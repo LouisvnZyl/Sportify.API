@@ -29,4 +29,6 @@ public class Player : IEntity
     public bool IsDeleted { get; set; }
 
     public virtual User User { get; set; }
+
+    public virtual ICollection<PlayerStat> PlayerStats { get; set; } = new List<PlayerStat>();
 }

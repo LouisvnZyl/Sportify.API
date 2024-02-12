@@ -1,22 +1,22 @@
 ﻿namespace Domain.Entities;
 
-public class PlayerStat
+public class PlayerStat : IEntity
 {
     public Guid Id { get; set; }
 
-    public int PlayerId { get; set; }
+    public Guid PlayerId { get; set; }
 
-    public int SportId { get; set; }
+    public Guid SportId { get; set; }
 
-    public short PlayerStatMatchCount { get; set; }
+    public int MatchCount { get; set; }
 
-    public short PlayerStatWinCount { get; set; }
+    public int WinCount { get; set; }
 
-    public short PlayerStatLossCount { get; set; }
+    public int LossCount { get; set; }
 
-    public short PlayerStatDrawCount { get; set; }
+    public int DrawCount { get; set; }
 
-    public decimal PlayerStatRating { get; set; }
+    public decimal PlayerRating { get; set; }
 
     public DateTime CreatedDate { get; set; }
 
@@ -28,7 +28,7 @@ public class PlayerStat
 
     public bool IsDeleted { get; set; }
 
-    public virtual Player Player { get; set; }
+    public Player Player { get; set; }
 
-    public virtual Sport Sport { get; set; }
+    public Sport Sport { get; set; }
 }
