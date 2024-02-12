@@ -1,9 +1,10 @@
 ﻿using Application.Authentication.Common;
+using Application.Common.Wrappers;
 using MediatR;
 
 namespace Application.Authentication.Commands.Register
 {
-    public class RegisterCommand : IRequest<AuthenticationResult>
+    public class RegisterCommand : IRequest<ApiResponse<AuthenticationResult>>
     {
         public string Email { get; set; } = string.Empty;
 

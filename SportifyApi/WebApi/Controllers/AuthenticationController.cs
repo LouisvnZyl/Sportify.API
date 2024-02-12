@@ -21,51 +21,29 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            try
+            var command = new RegisterCommand
             {
-                var command = new RegisterCommand
-                {
-                    FirstName = request.FirstName,
-                    LastName = request.LastName,
-                    Email = request.Email,
-                    Password = request.Password
-                };
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                Password = request.Password
+            };
 
-                var response = await _mediator.Send(command);
-                return Ok(response);
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
+            var response = await _mediator.Send(command);
+            return Ok(response.Data);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            try
+            var query = new LoginQuery
             {
-                var query = new LoginQuery
-                {
-                    Email = request.Email,
-                    Password = request.Password
-                };
+                Email = request.Email,
+                Password = request.Password
+            };
 
-                var response = await _mediator.Send(query);
-                return Ok(response);
-            }
-            catch (ValidationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex);
-            }
+            var response = await _mediator.Send(query);
+            return Ok(response);
         }
     }
 }

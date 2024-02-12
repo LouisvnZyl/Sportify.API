@@ -1,12 +1,14 @@
 ﻿using Application.Authentication.Common;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
+using Application.Common.Wrappers;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Authentication.Queries.Login
 {
-    public class LoginQueryHandler : IRequestHandler<LoginQuery, AuthenticationResult>
+    public class LoginQueryHandler : IRequestHandler<LoginQuery, ApiResponse<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -17,30 +19,33 @@ namespace Application.Authentication.Queries.Login
             _jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public async Task<AuthenticationResult> Handle(LoginQuery query, CancellationToken cancellationToken)
+        public async Task<ApiResponse<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
         {
             if (await _userRepository.GetUserByEmailAsync(query.Email) is not User user)
             {
-                throw new Exception("User does not exist");
+                throw new ApiException("User does not exist");
             }
 
             if (user.IsDeleted)
             {
-                throw new Exception("User does not exist");
+                throw new ApiException("User does not exist");
             }
 
             if (user.Password != query.Password)
             {
-                throw new Exception("Invalid Password");
+                throw new ApiException("Invalid Password");
             }
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 
 
-            return new AuthenticationResult
+            return new ApiResponse<AuthenticationResult>
             {
-                UserId = user.Id.ToString(),
-                Token = token
+                Data = new AuthenticationResult
+                {
+                    UserId = user.Id.ToString(),
+                    Token = token
+                }
             };
         }
     }

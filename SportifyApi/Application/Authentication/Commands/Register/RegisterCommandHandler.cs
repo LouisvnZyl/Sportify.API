@@ -1,12 +1,14 @@
 ﻿using Application.Authentication.Common;
+using Application.Common.Exceptions;
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
+using Application.Common.Wrappers;
 using Domain.Entities;
 using MediatR;
 
 namespace Application.Authentication.Commands.Register
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthenticationResult>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResponse<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IPlayerRepository _playerRepository;
@@ -19,11 +21,11 @@ namespace Application.Authentication.Commands.Register
             _playerRepository = playerRepository;
         }
 
-        public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        public async Task<ApiResponse<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             if (await _userRepository.GetUserByEmailAsync(command.Email) is not null)
             {
-                throw new Exception("User not found");
+                throw new ApiException("User not found");
             }
 
             var user = new User
@@ -61,10 +63,13 @@ namespace Application.Authentication.Commands.Register
 
             var token = _jwtTokenGenerator.GenerateToken(user);
 
-            return new AuthenticationResult
+            return new ApiResponse<AuthenticationResult>
             {
-                UserId = user.Id.ToString(),
-                Token = token
+                Data = new AuthenticationResult
+                {
+                    UserId = user.Id.ToString(),
+                    Token = token
+                }
             };
         }
     }
