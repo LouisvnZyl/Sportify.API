@@ -1,10 +1,10 @@
 ﻿using FluentValidation;
 
-namespace Application.Authentication.Queries.Login
+namespace Application.Authentication.Commands.Login
 {
-    public class LoginQueryValidator : AbstractValidator<LoginQuery>
+    public class LoginCommandValidator : AbstractValidator<ILoginCommand>
     {
-        public LoginQueryValidator()
+        public LoginCommandValidator()
         {
             RuleFor(x => x.Email)
                 .EmailAddress()

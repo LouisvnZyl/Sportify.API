@@ -1,27 +1,26 @@
-﻿using Application.Authentication.Common;
-using Application.Common.Exceptions;
+﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
 using Application.Common.Wrappers;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Authentication.Queries.Login
+namespace Application.Authentication.Commands.Login
 {
-    public class LoginQueryHandler : IRequestHandler<LoginQuery, ApiResponse<AuthenticationResult>>
+    public class LoginCommandHandler : IRequestHandler<ILoginCommand, ApiResponse<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
 
-        public LoginQueryHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
+        public LoginCommandHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
         {
             _userRepository = userRepository;
             _jwtTokenGenerator = jwtTokenGenerator;
         }
 
-        public async Task<ApiResponse<AuthenticationResult>> Handle(LoginQuery query, CancellationToken cancellationToken)
+        public async Task<ApiResponse<AuthenticationResult>> Handle(ILoginCommand command, CancellationToken cancellationToken)
         {
-            if (await _userRepository.GetUserByEmailAsync(query.Email, cancellationToken) is not User user)
+            if (await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken) is not User user)
             {
                 throw new ApiException("User does not exist");
             }
@@ -31,7 +30,7 @@ namespace Application.Authentication.Queries.Login
                 throw new ApiException("User does not exist");
             }
 
-            if (user.Password != query.Password)
+            if (user.Password != command.Password)
             {
                 throw new ApiException("Invalid Password");
             }

@@ -1,4 +1,4 @@
-﻿namespace Application.Authentication.Common
+﻿namespace Application.Authentication
 {
     public class AuthenticationResult
     {
