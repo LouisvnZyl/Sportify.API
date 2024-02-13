@@ -83,6 +83,18 @@ namespace Infrastructure.Migrations
                 column: "UserId",
                 principalTable: "User",
                 principalColumn: "Id");
+
+            migrationBuilder.InsertData(
+                table: "Sport",
+                columns: new[] { "Id", "Name", "Type", "CreatedDate", "CreatedBy", "ModifiedDate", "ModifiedBy", "IsDeleted" },
+                values: new object[,]
+                {
+                    { Guid.NewGuid(), "Padel", "Racket",  DateTime.UtcNow, "System", DateTime.UtcNow, "System", false},
+                    { Guid.NewGuid(), "Table Tennis", "Racket",  DateTime.UtcNow, "System", DateTime.UtcNow, "System", true},
+                    { Guid.NewGuid(), "Badminton", "Racket",  DateTime.UtcNow, "System", DateTime.UtcNow, "System", true},
+                    { Guid.NewGuid(), "Squash", "Racket",  DateTime.UtcNow, "System", DateTime.UtcNow, "System", true},
+                    { Guid.NewGuid(), "Racquetball", "Racket",  DateTime.UtcNow, "System", DateTime.UtcNow, "System", true}
+                });
         }
 
         /// <inheritdoc />
