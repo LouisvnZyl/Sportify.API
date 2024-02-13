@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class PaymentStatus
+public class PaymentStatus : IEntity
 {
     public Guid Id { get; set; }
 
@@ -15,6 +15,4 @@ public class PaymentStatus
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual ICollection<Payment> Payments { get; } = new List<Payment>();
 }

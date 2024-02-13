@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class Venue
+public class Venue : IEntity
 {
     public Guid Id { get; set; }
 
@@ -23,14 +23,4 @@ public class Venue
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
-
-    public virtual ICollection<Preference> Preferences { get; } = new List<Preference>();
-
-    public virtual Review Review { get; set; }
-
-    public virtual Sport Sport { get; set; }
-
-    public virtual VenueImage VenueImage { get; set; }
 }

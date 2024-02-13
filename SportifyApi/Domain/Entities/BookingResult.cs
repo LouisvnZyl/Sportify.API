@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class BookingResult
+public class BookingResult : IEntity
 {
     public Guid Id { get; set; }
 
@@ -15,5 +15,4 @@ public class BookingResult
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-    public virtual ICollection<Booking> Bookings { get; } = new List<Booking>();
 }

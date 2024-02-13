@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class NotificationType
+public class NotificationType : IEntity
 {
     public Guid Id { get; set; }
 
@@ -15,6 +15,4 @@ public class NotificationType
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual ICollection<Notification> Notifications { get; } = new List<Notification>();
 }

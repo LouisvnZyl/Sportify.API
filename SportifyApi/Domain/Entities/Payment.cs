@@ -2,7 +2,7 @@
 
 namespace Domain.Entities;
 
-public class Payment
+public class Payment : IEntity
 {
     public Guid Id { get; set; }
 
@@ -25,10 +25,4 @@ public class Payment
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual Booking Booking { get; set; }
-
-    public virtual PaymentStatus PaymentStatus { get; set; }
-
-    public virtual Player Player { get; set; }
 }

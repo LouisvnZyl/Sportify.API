@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class Notification
+public class Notification : IEntity
 {
     public Guid Id { get; set; }
 
@@ -21,8 +21,4 @@ public class Notification
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual NotificationType NotificationType { get; set; }
-
-    public virtual Player Player { get; set; }
 }

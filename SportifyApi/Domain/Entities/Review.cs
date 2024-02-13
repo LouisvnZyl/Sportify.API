@@ -1,6 +1,6 @@
 ﻿namespace Domain.Entities;
 
-public class Review
+public class Review : IEntity
 {
     public Guid Id { get; set; }
 
@@ -21,8 +21,4 @@ public class Review
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual Player Player { get; set; }
-
-    public virtual ICollection<Venue> Venues { get; } = new List<Venue>();
 }

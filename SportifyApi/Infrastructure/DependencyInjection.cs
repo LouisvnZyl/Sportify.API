@@ -35,6 +35,8 @@ namespace Infrastructure
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISportRepository, SportRepository>();
+            services.AddScoped<IPlayerStatRepository, PlayerStatRepository>();
 
             return services;
         }

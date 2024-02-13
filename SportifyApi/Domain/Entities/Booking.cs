@@ -27,14 +27,4 @@ public class Booking
     public string ModifiedBy { get; set; }
 
     public bool IsDeleted { get; set; }
-
-    public virtual BookingResult? BookingResult { get; set; }
-
-    public virtual BookingStatus BookingStatus { get; set; }
-
-    public virtual ICollection<Payment> Payments { get; } = new List<Payment>();
-
-    public virtual Player Player { get; set; }
-
-    public virtual Venue Venue { get; set; }
 }

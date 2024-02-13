@@ -1,6 +1,5 @@
 ﻿using Application.Authentication.Commands.Register;
 using Application.Authentication.Queries.Login;
-using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Contracts.Authentication;
