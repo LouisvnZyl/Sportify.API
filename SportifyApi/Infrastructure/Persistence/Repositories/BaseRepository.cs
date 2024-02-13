@@ -16,6 +16,11 @@ namespace Infrastructure.Persistence.Repositories
             _dbSet = dbContext.Set<T>();
         }
 
+        public void Dispose()
+        {
+            _dbContext.Dispose();
+        }
+
         public async Task CreateAsync(T entity, CancellationToken cancellationToken)
         {
             _dbContext.Add(entity);
@@ -36,7 +41,7 @@ namespace Infrastructure.Persistence.Repositories
 
         public async Task RemoveById(Guid id, CancellationToken cancellationToken)
         {
-            var obj = await _dbSet.FirstOrDefaultAsync(x => x.Id == id);
+            var obj = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
             if(obj != null)
             {
                 obj.IsDeleted = true;

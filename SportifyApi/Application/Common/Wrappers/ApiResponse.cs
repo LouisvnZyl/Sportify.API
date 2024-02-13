@@ -1,26 +1,14 @@
 ﻿namespace Application.Common.Wrappers
 {
-    public class ApiResponse<T>
+    public record ApiResponse<T>(bool HasError, string Message, T Data)
     {
-        public ApiResponse() 
-        { 
-        }
+        // Default constructor
+        public ApiResponse() : this(false, string.Empty, default!) { }
 
-        public ApiResponse(T data, string message = null)
-        {
-            HasError = false;
-            Message = message;
-            Data = data;
-        }
+        // Constructor with data
+        public ApiResponse(T data, string message = "") : this(false, message, data) { }
 
-        public ApiResponse(string message) 
-        {
-            HasError = true;
-            Message = message;
-        }
-
-        public bool HasError { get; set; }
-        public string Message { get; set; }
-        public T Data { get; set; }
+        // Constructor with error message
+        public ApiResponse(string message = "") : this(true, message, default!) { }
     }
 }
