@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.Authentication.Commands.Register
 {
-    public interface IRegisterCommand : IRequest<ApiResponse<AuthenticationResult>>
+    public class RegisterCommand : IRequest<ApiResponse<AuthenticationResult>>
     {
         public string Email { get; set; }
 

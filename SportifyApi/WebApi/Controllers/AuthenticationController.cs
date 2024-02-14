@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Application.Authentication.Commands.Login;
+using Application.Authentication.Commands.Register;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Contracts.Authentication;
 
@@ -18,14 +20,28 @@ namespace WebApi.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register(RegisterRequest request)
         {
-            var response = await _mediator.Send(request);
+            var command = new RegisterCommand
+            {
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var response = await _mediator.Send(command);
             return Ok(response.Data);
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest request)
         {
-            var response = await _mediator.Send(request);
+            var command = new LoginCommand
+            {
+                Email = request.Email,
+                Password = request.Password
+            };
+
+            var response = await _mediator.Send(command);
             return Ok(response.Data);
         }
     }

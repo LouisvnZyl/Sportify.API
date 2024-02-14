@@ -1,10 +1,8 @@
-﻿using Application.Authentication.Commands.Login;
-
-namespace WebApi.Contracts.Authentication
+﻿namespace WebApi.Contracts.Authentication
 {
-    public interface LoginRequest : ILoginCommand
+    public class LoginRequest
     {
-        string Email { get; set; }
-        string Password { get; set; }
+        public string Email { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

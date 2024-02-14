@@ -1,8 +1,6 @@
-﻿using Application.Authentication.Commands.Register;
-
-namespace WebApi.Contracts.Authentication
+﻿namespace WebApi.Contracts.Authentication
 {
-    public class RegisterRequest : IRegisterCommand
+    public class RegisterRequest
     {
         public string Email { get; set; } = string.Empty;
 

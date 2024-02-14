@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Application.Authentication.Commands.Register
 {
-    public class RegisterCommandValidator : AbstractValidator<IRegisterCommand>
+    public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
     {
         public RegisterCommandValidator()
         {

@@ -7,7 +7,7 @@ using MediatR;
 
 namespace Application.Authentication.Commands.Register
 {
-    public class RegisterCommandHandler : IRequestHandler<IRegisterCommand, ApiResponse<AuthenticationResult>>
+    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResponse<AuthenticationResult>>
     {
         private readonly IUserRepository _userRepository;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
@@ -18,7 +18,7 @@ namespace Application.Authentication.Commands.Register
             _userRepository = userRepository;
         }
 
-        public async Task<ApiResponse<AuthenticationResult>> Handle(IRegisterCommand command, CancellationToken cancellationToken)
+        public async Task<ApiResponse<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
         {
             if (await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken) is not null)
             {
