@@ -34,6 +34,7 @@ namespace Infrastructure
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISportRepository, SportRepository>();
             services.AddScoped<IPlayerStatRepository, PlayerStatRepository>();
+            services.AddScoped<IBookingStatusRepository, BookingStatusRepository>();
 
             return services;
         }
