@@ -19,7 +19,10 @@ public class SportifyContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
+        new BookingStatusConfiguration().Configure(modelBuilder.Entity<BookingStatus>());
         new PlayerConfiguration().Configure(modelBuilder.Entity<Player>());
+        new PlayerStatConfiguration().Configure(modelBuilder.Entity<PlayerStat>());
+        new SportConfiguration().Configure(modelBuilder.Entity<Sport>());
         new UserConfiguration().Configure(modelBuilder.Entity<User>());
     }
 }
