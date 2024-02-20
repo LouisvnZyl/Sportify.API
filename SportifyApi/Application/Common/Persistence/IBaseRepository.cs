@@ -9,7 +9,5 @@ namespace Application.Common.Persistence
         Task<IEnumerable<T>> GetAllAsync(CancellationToken cancellationToken);
 
         Task<T?> GetAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
-
-        Task RemoveById(Guid id, CancellationToken cancellationToken);
     }
 }

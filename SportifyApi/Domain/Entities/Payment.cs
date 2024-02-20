@@ -1,8 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Domain.Common;
 
 namespace Domain.Entities;
 
-public class Payment : IEntity
+public class Payment : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
@@ -15,14 +15,4 @@ public class Payment : IEntity
     public DateTime PaymentTimestamp { get; set; }
 
     public decimal PaymentAmount { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 
 namespace Infrastructure.Persistence.Repositories
 {
-    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class, IEntity
+    public abstract class BaseRepository<T> : IBaseRepository<T> where T : class
     {
         private readonly SportifyContext _dbContext;
         protected readonly DbSet<T> _dbSet;
@@ -37,17 +37,6 @@ namespace Infrastructure.Persistence.Repositories
             return await _dbSet
                 .Where(predicate)
                 .FirstOrDefaultAsync(cancellationToken);
-        }
-
-        public async Task RemoveById(Guid id, CancellationToken cancellationToken)
-        {
-            var obj = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-            if(obj != null)
-            {
-                obj.IsDeleted = true;
-                _dbSet.Update(obj);
-                await _dbContext.SaveChangesAsync(cancellationToken);
-            }
         }
     }
 }

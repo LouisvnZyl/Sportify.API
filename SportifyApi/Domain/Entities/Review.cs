@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Review : IEntity
+namespace Domain.Entities;
+
+public class Review : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
@@ -11,14 +13,5 @@ public class Review : IEntity
     public string ReviewComment { get; set; }
 
     public DateTime ReviewTimestamp { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }
+

@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Notification : IEntity
+namespace Domain.Entities;
+
+public class Notification : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
@@ -11,14 +13,4 @@ public class Notification : IEntity
     public string NotificationMessage { get; set; }
 
     public DateTime NotificationTimestamp { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }

@@ -1,20 +1,12 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Preference : IEntity
+namespace Domain.Entities;
+
+public class Preference : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
     public int? SportId { get; set; }
 
     public int? VenueId { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }

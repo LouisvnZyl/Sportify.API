@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Venue : IEntity
+namespace Domain.Entities;
+
+public class Venue : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
@@ -13,14 +15,4 @@ public class Venue : IEntity
     public string VenueName { get; set; }
 
     public string VenueLocation { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }

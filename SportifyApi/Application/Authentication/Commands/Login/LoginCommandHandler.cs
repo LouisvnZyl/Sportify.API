@@ -25,9 +25,12 @@ namespace Application.Authentication.Commands.Login
                 throw new ApiException("User does not exist");
             }
 
-            if (user.IsDeleted)
+            if (user.IsDeleted != null)
             {
-                throw new ApiException("User does not exist");
+                if (user.IsDeleted == true)
+                {
+                    throw new ApiException("User does not exist");
+                }
             }
 
             if (user.Password != command.Password)

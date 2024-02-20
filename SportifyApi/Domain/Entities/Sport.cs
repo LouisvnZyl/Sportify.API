@@ -1,20 +1,12 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Sport : IEntity
-{
+namespace Domain.Entities;
+
+public class Sport : BaseAuditableEntity
+{   
     public Guid Id { get; set; }
 
     public string Name { get; set; }
 
     public string Type { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }
