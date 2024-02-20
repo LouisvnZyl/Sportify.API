@@ -20,7 +20,7 @@ public class PlayerStat : BaseAuditableEntity
 
     public decimal PlayerRating { get; set; }
 
-    public Player Player { get; set; }
+    public Player Player { get; set; } = null!;
 
-    public Sport Sport { get; set; }
+    public Sport Sport { get; set; } = null!;
 }

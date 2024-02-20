@@ -16,9 +16,5 @@ namespace Application.Common.Exceptions
         public ApiException(string? message, Exception? innerException) : base(message, innerException)
         {
         }
-
-        protected ApiException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
     }
 }

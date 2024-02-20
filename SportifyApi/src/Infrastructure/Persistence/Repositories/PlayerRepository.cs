@@ -1,4 +1,5 @@
 ﻿using Application.Common.Persistence;
+using Domain.Entities;
 
 namespace Infrastructure.Persistence.Repositories
 {
