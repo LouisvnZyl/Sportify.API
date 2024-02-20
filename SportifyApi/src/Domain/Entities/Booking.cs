@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public class Booking
+namespace Domain.Entities;
+
+public class Booking : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
@@ -17,14 +19,4 @@ public class Booking
     public DateTime BookingDate { get; set; }
 
     public short BookingDuration { get; set; }
-
-    public DateTime CreatedDate { get; set; }
-
-    public string CreatedBy { get; set; }
-
-    public DateTime ModifiedDate { get; set; }
-
-    public string ModifiedBy { get; set; }
-
-    public bool IsDeleted { get; set; }
 }

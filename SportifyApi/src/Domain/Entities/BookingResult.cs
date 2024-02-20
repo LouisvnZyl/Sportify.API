@@ -6,5 +6,5 @@ public class BookingResult : BaseAuditableEntity
 {
     public Guid Id { get; set; }
 
-    public string BookingResult1 { get; set; }
+    public string? BookingResult1 { get; set; }
 }

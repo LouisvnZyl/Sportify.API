@@ -10,7 +10,7 @@ public class Notification : BaseAuditableEntity
 
     public int PlayerId { get; set; }
 
-    public string NotificationMessage { get; set; }
+    public string? NotificationMessage { get; set; }
 
     public DateTime NotificationTimestamp { get; set; }
 }

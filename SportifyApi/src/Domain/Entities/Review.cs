@@ -8,9 +8,9 @@ public class Review : BaseAuditableEntity
 
     public int PlayerId { get; set; }
 
-    public string ReviewRating { get; set; }
+    public string? ReviewRating { get; set; }
 
-    public string ReviewComment { get; set; }
+    public string? ReviewComment { get; set; }
 
     public DateTime ReviewTimestamp { get; set; }
 }

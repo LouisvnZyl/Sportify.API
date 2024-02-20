@@ -12,7 +12,7 @@ public class Venue : BaseAuditableEntity
 
     public int? ReviewId { get; set; }
 
-    public string VenueName { get; set; }
+    public string? VenueName { get; set; }
 
-    public string VenueLocation { get; set; }
+    public string? VenueLocation { get; set; }
 }
