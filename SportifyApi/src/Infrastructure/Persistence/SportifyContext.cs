@@ -15,6 +15,12 @@ public class SportifyContext : DbContext
 
     public virtual DbSet<Player> Players { get; set; }
 
+    public virtual DbSet<BookingStatus> BookingStatuses { get; set; }
+
+    public virtual DbSet<PlayerStat> PlayerStats { get; set; }
+
+    public virtual DbSet<Sport> Sports { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
