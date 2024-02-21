@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 using MediatR;
 
-namespace Application.Common.Behaviors
+namespace Application.Common.Behaviours
 {
-    public class ValidationBehavior<TRequest, TResponse> :
+    public class ValidationBehaviour<TRequest, TResponse> :
         IPipelineBehavior<TRequest, TResponse>
         where TRequest : IRequest<TResponse>
     {
         private readonly IValidator<TRequest>? _validator;
 
-        public ValidationBehavior(IValidator<TRequest>? validator = null)
+        public ValidationBehaviour(IValidator<TRequest>? validator = null)
         {
             _validator = validator;
         }
