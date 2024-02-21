@@ -17,22 +17,22 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Authentic
         _userRepository = userRepository;
     }
 
-    public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    public async Task<AuthenticationResult> Handle(RegisterCommand request, CancellationToken cancellationToken)
     {
-        var existingUser = await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken);
+        var existingUser = await _userRepository.GetUserByEmailAsync(request.Email, cancellationToken);
 
         Guard.Against.Null(existingUser, "User with this email already exists");
 
         var player = new Player
         {
             Id = Guid.NewGuid(),
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            Nickname = command.Nickname,
-            PhoneNumber = command.PhoneNumber,
-            DateOfBirth = command.DateOfBirth,
-            CreatedBy = command.Email,
-            ModifiedBy = command.Email,
+            FirstName = request.FirstName,
+            LastName = request.LastName,
+            Nickname = request.Nickname,
+            PhoneNumber = request.PhoneNumber,
+            DateOfBirth = request.DateOfBirth,
+            CreatedBy = request.Email,
+            ModifiedBy = request.Email,
             CreatedDate = DateTime.UtcNow,
             ModifiedDate = DateTime.UtcNow,
             IsDeleted = false
@@ -41,11 +41,11 @@ public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Authentic
         var user = new User
         {
             Id = Guid.NewGuid(),
-            Username = command.Username,
-            Email = command.Email,
-            Password = command.Password,
-            CreatedBy = command.Email,
-            ModifiedBy = command.Email,
+            Username = request.Username,
+            Email = request.Email,
+            Password = request.Password,
+            CreatedBy = request.Email,
+            ModifiedBy = request.Email,
             CreatedDate = DateTime.UtcNow,
             ModifiedDate = DateTime.UtcNow,
             IsDeleted = false,

@@ -1,4 +1,5 @@
-﻿using Application.Authentication.Commands.Login;
+﻿using Application.Authentication;
+using Application.Authentication.Commands.Login;
 using Application.Authentication.Commands.Register;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -9,24 +10,22 @@ namespace WebApi.Controllers;
 [Route("[controller]")]
 public class AuthenticationController : ControllerBase
 {
-    private readonly ISender _mediator;
+    private readonly ISender _sender;
 
-    public AuthenticationController(ISender mediator)
+    public AuthenticationController(ISender sender)
     {
-        _mediator = mediator;
+        _sender = sender;
     }
 
     [HttpPost("register")]
-    public async Task<IActionResult> Register(RegisterCommand command)
+    public Task<AuthenticationResult> Register(RegisterCommand command)
     {
-        var response = await _mediator.Send(command);
-        return Ok(response);
+        return _sender.Send(command);
     }
 
     [HttpPost("login")]
-    public async Task<IActionResult> Login(LoginCommand command)
+    public async Task<AuthenticationResult> Login(LoginCommand command)
     {
-        var response = await _mediator.Send(command);
-        return Ok(response);
+        return await _sender.Send(command);
     }
 }

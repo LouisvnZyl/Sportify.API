@@ -16,24 +16,23 @@ public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthenticationR
         _jwtTokenGenerator = jwtTokenGenerator;
     }
 
-    public async Task<AuthenticationResult> Handle(LoginCommand command, CancellationToken cancellationToken)
+    public async Task<AuthenticationResult> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
-        var user = await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken);
+        var user = await _userRepository.GetUserByEmailAsync(request.Email, cancellationToken);
 
-        Guard.Against.NotFound(command.Email, user);
+        Guard.Against.NotFound(request.Email, user);
 
         if (user?.IsDeleted == true)
         {
-            Guard.Against.NotFound(command.Email, user);
+            Guard.Against.NotFound(request.Email, user);
         }
 
-        /*if (user.Password != command.Password)
+        /*if (user.Password != request.Password)
         {
             throw new ApiException("Invalid Password");
         }*/
 
         var token = _jwtTokenGenerator.GenerateToken(user);
-
 
         return new AuthenticationResult
         {
