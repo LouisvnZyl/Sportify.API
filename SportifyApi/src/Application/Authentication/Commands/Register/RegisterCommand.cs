@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Application.Authentication.Commands.Register;
+﻿namespace Application.Authentication.Commands.Register;
 
 public class RegisterCommand : IRequest<AuthenticationResult>
 {

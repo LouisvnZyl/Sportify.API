@@ -1,8 +1,6 @@
 ﻿using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
-using Ardalis.GuardClauses;
 using Domain.Entities;
-using MediatR;
 
 namespace Application.Authentication.Commands.Register;
 

@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Application.Authentication.Commands.Login;
+﻿namespace Application.Authentication.Commands.Login;
 
 public class LoginCommand : IRequest<AuthenticationResult>
 {
