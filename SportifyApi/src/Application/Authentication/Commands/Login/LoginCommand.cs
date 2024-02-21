@@ -1,11 +1,9 @@
-﻿using Application.Common.Wrappers;
-using MediatR;
+﻿using MediatR;
 
-namespace Application.Authentication.Commands.Login
+namespace Application.Authentication.Commands.Login;
+
+public class LoginCommand : IRequest<AuthenticationResult>
 {
-    public class LoginCommand : IRequest<ApiResponse<AuthenticationResult>>
-    {
-        public string Email { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
-    }
+    public string Email { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
 }

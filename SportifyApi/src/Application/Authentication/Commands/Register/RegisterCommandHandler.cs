@@ -1,71 +1,65 @@
-﻿using Application.Common.Exceptions;
-using Application.Common.Interfaces.Authentication;
+﻿using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
-using Application.Common.Wrappers;
+using Ardalis.GuardClauses;
 using Domain.Entities;
 using MediatR;
 
-namespace Application.Authentication.Commands.Register
+namespace Application.Authentication.Commands.Register;
+
+public class RegisterCommandHandler : IRequestHandler<RegisterCommand, AuthenticationResult>
 {
-    public class RegisterCommandHandler : IRequestHandler<RegisterCommand, ApiResponse<AuthenticationResult>>
+    private readonly IUserRepository _userRepository;
+    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+
+    public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        _jwtTokenGenerator = jwtTokenGenerator;
+        _userRepository = userRepository;
+    }
 
-        public RegisterCommandHandler(IJwtTokenGenerator jwtTokenGenerator, IUserRepository userRepository)
+    public async Task<AuthenticationResult> Handle(RegisterCommand command, CancellationToken cancellationToken)
+    {
+        var existingUser = await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken);
+
+        Guard.Against.Null(existingUser, "User with this email already exists");
+
+        var player = new Player
         {
-            _jwtTokenGenerator = jwtTokenGenerator;
-            _userRepository = userRepository;
-        }
+            Id = Guid.NewGuid(),
+            FirstName = command.FirstName,
+            LastName = command.LastName,
+            Nickname = command.Nickname,
+            PhoneNumber = command.PhoneNumber,
+            DateOfBirth = command.DateOfBirth,
+            CreatedBy = command.Email,
+            ModifiedBy = command.Email,
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow,
+            IsDeleted = false
+        };
 
-        public async Task<ApiResponse<AuthenticationResult>> Handle(RegisterCommand command, CancellationToken cancellationToken)
+        var user = new User
         {
-            if (await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken) is not null)
-            {
-                throw new ApiException("User not found");
-            }
+            Id = Guid.NewGuid(),
+            Username = command.Username,
+            Email = command.Email,
+            Password = command.Password,
+            CreatedBy = command.Email,
+            ModifiedBy = command.Email,
+            CreatedDate = DateTime.UtcNow,
+            ModifiedDate = DateTime.UtcNow,
+            IsDeleted = false,
+            Player = player
+        };
 
-            var player = new Player
-            {
-                Id = Guid.NewGuid(),
-                FirstName = command.FirstName,
-                LastName = command.LastName,
-                Nickname = command.Nickname,
-                PhoneNumber = command.PhoneNumber,
-                DateOfBirth = command.DateOfBirth,
-                CreatedBy = command.Email,
-                ModifiedBy = command.Email,
-                CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow,
-                IsDeleted = false
-            };
+        await _userRepository.CreateAsync(user, cancellationToken);
 
-            var user = new User
-            {
-                Id = Guid.NewGuid(),
-                Username = command.Username,
-                Email = command.Email,
-                Password = command.Password,
-                CreatedBy = command.Email,
-                ModifiedBy = command.Email,
-                CreatedDate = DateTime.UtcNow,
-                ModifiedDate = DateTime.UtcNow,
-                IsDeleted = false,
-                Player = player
-            };
+        var token = _jwtTokenGenerator.GenerateToken(user);
 
-            await _userRepository.CreateAsync(user, cancellationToken);
-
-            var token = _jwtTokenGenerator.GenerateToken(user);
-
-            return new ApiResponse<AuthenticationResult>
-            {
-                Data = new AuthenticationResult
-                {
-                    UserId = user.Id.ToString(),
-                    Token = token
-                }
-            };
-        }
+        return new AuthenticationResult
+        {
+            UserId = user.Id.ToString(),
+            Token = token
+        };
     }
 }

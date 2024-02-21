@@ -1,54 +1,44 @@
-﻿using Application.Common.Exceptions;
-using Application.Common.Interfaces.Authentication;
+﻿using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
-using Application.Common.Wrappers;
-using Domain.Entities;
+using Ardalis.GuardClauses;
 using MediatR;
 
-namespace Application.Authentication.Commands.Login
+namespace Application.Authentication.Commands.Login;
+
+public class LoginCommandHandler : IRequestHandler<LoginCommand, AuthenticationResult>
 {
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, ApiResponse<AuthenticationResult>>
+    private readonly IUserRepository _userRepository;
+    private readonly IJwtTokenGenerator _jwtTokenGenerator;
+
+    public LoginCommandHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IJwtTokenGenerator _jwtTokenGenerator;
+        _userRepository = userRepository;
+        _jwtTokenGenerator = jwtTokenGenerator;
+    }
 
-        public LoginCommandHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
+    public async Task<AuthenticationResult> Handle(LoginCommand command, CancellationToken cancellationToken)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken);
+
+        Guard.Against.NotFound(command.Email, user);
+
+        if (user?.IsDeleted == true)
         {
-            _userRepository = userRepository;
-            _jwtTokenGenerator = jwtTokenGenerator;
+            Guard.Against.NotFound(command.Email, user);
         }
 
-        public async Task<ApiResponse<AuthenticationResult>> Handle(LoginCommand command, CancellationToken cancellationToken)
+        /*if (user.Password != command.Password)
         {
-            if (await _userRepository.GetUserByEmailAsync(command.Email, cancellationToken) is not User user)
-            {
-                throw new ApiException("User does not exist");
-            }
+            throw new ApiException("Invalid Password");
+        }*/
 
-            if (user.IsDeleted != null)
-            {
-                if (user.IsDeleted == true)
-                {
-                    throw new ApiException("User does not exist");
-                }
-            }
-
-            if (user.Password != command.Password)
-            {
-                throw new ApiException("Invalid Password");
-            }
-
-            var token = _jwtTokenGenerator.GenerateToken(user);
+        var token = _jwtTokenGenerator.GenerateToken(user);
 
 
-            return new ApiResponse<AuthenticationResult>
-            {
-                Data = new AuthenticationResult
-                {
-                    UserId = user.Id.ToString(),
-                    Token = token
-                }
-            };
-        }
+        return new AuthenticationResult
+        {
+            UserId = user.Id.ToString(),
+            Token = token
+        };
     }
 }
