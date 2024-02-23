@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34408.163
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DD33530C-D35A-411F-9B06-8E2AA408C201}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 .Api", "1 .Api", "{5B422594-B917-49D8-9C9B-2C98488FDAD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{004ECDD3-23C5-4E75-BB85-371BD48F60E7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Infrastructure", "4. Infrastructure", "{79EBF4D1-E0B1-4975-8478-BAC8F26D6B23}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Application", "3. Application", "{0F99BEB6-A656-4E1E-BCA6-42F6698372EC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportify.Api", "Sportify.Api\Sportify.Api.csproj", "{E24BFAFE-76B6-4D10-B555-965AC385CAD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportify.Application", "Sportify.Application\Sportify.Application.csproj", "{A3FA158E-CD75-47D0-B84B-90502B7D11C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportify.Infrastructure", "Sportify.Infrastructure\Sportify.Infrastructure.csproj", "{523A9FD9-BD73-44C9-9312-2016B6CA67BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sportify.Domain", "Sportify.Domain\Sportify.Domain.csproj", "{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E24BFAFE-76B6-4D10-B555-965AC385CAD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E24BFAFE-76B6-4D10-B555-965AC385CAD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E24BFAFE-76B6-4D10-B555-965AC385CAD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E24BFAFE-76B6-4D10-B555-965AC385CAD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A3FA158E-CD75-47D0-B84B-90502B7D11C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A3FA158E-CD75-47D0-B84B-90502B7D11C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A3FA158E-CD75-47D0-B84B-90502B7D11C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A3FA158E-CD75-47D0-B84B-90502B7D11C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{523A9FD9-BD73-44C9-9312-2016B6CA67BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{523A9FD9-BD73-44C9-9312-2016B6CA67BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{523A9FD9-BD73-44C9-9312-2016B6CA67BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{523A9FD9-BD73-44C9-9312-2016B6CA67BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E24BFAFE-76B6-4D10-B555-965AC385CAD9} = {5B422594-B917-49D8-9C9B-2C98488FDAD2}
+		{A3FA158E-CD75-47D0-B84B-90502B7D11C4} = {0F99BEB6-A656-4E1E-BCA6-42F6698372EC}
+		{523A9FD9-BD73-44C9-9312-2016B6CA67BB} = {79EBF4D1-E0B1-4975-8478-BAC8F26D6B23}
+		{1D1D48E5-B3A8-440C-81B0-A3D7FF822CA7} = {004ECDD3-23C5-4E75-BB85-371BD48F60E7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8768804-6C5E-4F3C-B789-3A2031593354}
+	EndGlobalSection
+EndGlobal

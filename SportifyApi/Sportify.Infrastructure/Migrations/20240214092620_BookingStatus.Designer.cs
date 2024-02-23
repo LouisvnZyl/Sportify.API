@@ -4,6 +4,7 @@ using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(SportifyContext))]
-    partial class SportifyContextModelSnapshot : ModelSnapshot
+    [Migration("20240214092620_BookingStatus")]
+    partial class BookingStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Domain.Entities.BookingStatus", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.BookingStatus", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -57,7 +60,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("BookingStatus", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.PlayerStat", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.PlayerStat", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -117,7 +120,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("PlayerStat", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.Sport", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.Sport", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -157,7 +160,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Sport", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.User", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -266,7 +269,7 @@ namespace Infrastructure.Migrations
                     b.ToTable("Player", (string)null);
                 });
 
-            modelBuilder.Entity("Domain.Entities.PlayerStat", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.PlayerStat", b =>
                 {
                     b.HasOne("Player", "Player")
                         .WithMany()
@@ -278,7 +281,7 @@ namespace Infrastructure.Migrations
                         .WithMany("PlayerStats")
                         .HasForeignKey("PlayerId1");
 
-                    b.HasOne("Domain.Entities.Sport", "Sport")
+                    b.HasOne("Sportify.Domain.Entities.Sport", "Sport")
                         .WithMany()
                         .HasForeignKey("SportId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -291,7 +294,7 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Player", b =>
                 {
-                    b.HasOne("Domain.Entities.User", "User")
+                    b.HasOne("Sportify.Domain.Entities.User", "User")
                         .WithOne("Player")
                         .HasForeignKey("Player", "UserId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -300,7 +303,7 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Domain.Entities.User", b =>
+            modelBuilder.Entity("Sportify.Domain.Entities.User", b =>
                 {
                     b.Navigation("Player")
                         .IsRequired();
