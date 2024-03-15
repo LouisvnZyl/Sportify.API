@@ -1,5 +1,6 @@
 ﻿using Application.Common.Interfaces.Authentication;
 using Application.Common.Persistence;
+using Domain.Repository.Interfaces;
 using Infrastructure.Authentication;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.DatabaseContext;
@@ -27,10 +28,7 @@ namespace Infrastructure
                 dbContext.Database.Migrate();
             }
 
-            services.Configure<JwtSettings>(configuration.GetSection(JwtSettings.SectionName));
-
-            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
-
+            services.AddTransient(typeof(IGenericRepository<,>), typeof(GenericRepository<,>));
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IBookingStatusRepository, BookingStatusRepository>();
 
