@@ -1,26 +1,32 @@
-﻿using Domain.Entities;
+﻿using Domain.Base;
+using Domain.Entities;
 using Infrastructure.Persistence.Configurations;
+using Infrastructure.Persistence.Interface.Base;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
-namespace Infrastructure.Persistence;
+namespace Infrastructure.Persistence.DatabaseContext;
 
-public class SportifyContext : DbContext
+public class SportifyContext : DbContext,IDbContext
 {
     public SportifyContext(DbContextOptions<SportifyContext> options)
         : base(options)
     {
     }
+    
+    public IDbContextTransaction BeginTransaction() =>
+        Database.BeginTransaction();
+   public DbSet<TEntity> GetSet<TEntity, Tkey>() where TEntity : Entity<Tkey> => Set<TEntity>();
 
-    public virtual DbSet<User> Users { get; set; }
+    public Task<int> SaveAsync() =>
+        SaveChangesAsync();
 
-    public virtual DbSet<Player> Players { get; set; }
+    public int SaveSync() =>
+        SaveChanges();
 
-    public virtual DbSet<BookingStatus> BookingStatuses { get; set; }
-
-    public virtual DbSet<PlayerStat> PlayerStats { get; set; }
-
-    public virtual DbSet<Sport> Sports { get; set; }
-
+    public void Migrate() =>
+        Database.Migrate();
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

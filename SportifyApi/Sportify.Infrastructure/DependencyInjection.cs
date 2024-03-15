@@ -2,6 +2,7 @@
 using Application.Common.Persistence;
 using Infrastructure.Authentication;
 using Infrastructure.Persistence;
+using Infrastructure.Persistence.DatabaseContext;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -31,9 +32,6 @@ namespace Infrastructure
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
 
             services.AddScoped<IPlayerRepository, PlayerRepository>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ISportRepository, SportRepository>();
-            services.AddScoped<IPlayerStatRepository, PlayerStatRepository>();
             services.AddScoped<IBookingStatusRepository, BookingStatusRepository>();
 
             return services;

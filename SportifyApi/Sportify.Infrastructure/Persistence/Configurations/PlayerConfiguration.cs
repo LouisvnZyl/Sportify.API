@@ -31,33 +31,6 @@ namespace Infrastructure.Persistence.Configurations
 
             builder.Property(p => p.ProfilePictureUrl)
                 .HasMaxLength(255);
-
-            builder.Property(p => p.CreatedDate)
-                .IsRequired();
-
-            builder.Property(p => p.CreatedBy)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            builder.Property(p => p.ModifiedDate)
-                .IsRequired();
-
-            builder.Property(p => p.ModifiedBy)
-                .IsRequired()
-                .HasMaxLength(50);
-
-            builder.Property(p => p.IsDeleted)
-                .IsRequired();
-
-            builder.HasOne(p => p.User)
-                .WithOne(u => u.Player)
-                .HasForeignKey<Player>(p => p.UserId)
-                .OnDelete(DeleteBehavior.NoAction);
-
-            builder.HasMany(p => p.PlayerStats)
-                .WithOne(ps => ps.Player)
-                .HasForeignKey(p => p.PlayerId)
-                .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

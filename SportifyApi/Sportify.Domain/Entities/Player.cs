@@ -1,9 +1,9 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Base;
 
-public class Player : BaseAuditableEntity
+namespace Domain.Entities;
+
+public class Player : Entity<Guid>
 {
-    public Guid Id { get; set; }
-
     public Guid UserId { get; set; }
 
     public string? FirstName { get; set; }
@@ -20,5 +20,4 @@ public class Player : BaseAuditableEntity
 
     public virtual User User { get; set; } = null!;
 
-    public virtual ICollection<PlayerStat> PlayerStats { get; set; } = new List<PlayerStat>();
 }

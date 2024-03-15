@@ -1,8 +1,15 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Base;
 
-public class BookingStatus : BaseAuditableEntity
+namespace Domain.Entities;
+
+public class BookingStatus : Entity<int>
 {
-    public Guid Id { get; set; }
-
+    /// <summary>
+    /// Ef trickery
+    /// </summary>
+    public BookingStatus()
+    {
+        
+    }
     public string? Name { get; set; }
 }
