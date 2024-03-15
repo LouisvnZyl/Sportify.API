@@ -1,9 +1,9 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Base;
 
-public class Venue : BaseAuditableEntity
+namespace Domain.Entities;
+
+public class Venue : Entity<Guid>
 {
-    public Guid Id { get; set; }
-
     public int? VenueImageId { get; set; }
 
     public int SportId { get; set; }
