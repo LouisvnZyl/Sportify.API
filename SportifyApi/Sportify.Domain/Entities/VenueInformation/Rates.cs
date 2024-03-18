@@ -7,4 +7,5 @@ public class Rates : Entity<Guid>
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
     public string Name { get; set; }
+    public IEnumerable<Facility> Facilities { get; set; }
 }
